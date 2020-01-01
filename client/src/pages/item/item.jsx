@@ -220,12 +220,14 @@ const Item = ({ match, history, setBasket, basket }) => {
               />
             ) : (
               <div className="products-container" key={i}>
-                <img
-                  className="products-image"
-                  src={`/img/${cur.images}`}
-                  alt=""
-                />
-                <h5 className="products-name">{cur.name}</h5>
+                <Link to={`item/${cur._id}`}>
+                  <img
+                    className="products-image"
+                    src={`/img/${cur.images}`}
+                    alt=""
+                  />
+                  <h5 className="products-name">{cur.name}</h5>
+                </Link>
                 <h6 className="products-price">{cur.price}</h6>
                 <button className="add-basket-btn">
                   <div

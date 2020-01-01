@@ -1,5 +1,7 @@
 import http from "./httpService";
-const url = "http://localhost:7008/api/v1/email";
+import { api } from "./config";
+
+const url = api + "api/v1/email";
 
 export async function joinMailList(email) {
   //   try {

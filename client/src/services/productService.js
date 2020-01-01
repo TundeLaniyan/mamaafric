@@ -1,9 +1,11 @@
 import http from "./httpService";
+import { api as apiStart } from "./config";
 
-const api = "http://localhost:7008/api/v1/product";
+const api = apiStart + "api/v1/product";
 
 export async function getProducts(url) {
   try {
+    console.log("api", api);
     const { data } = await (await fetch(api + url)).json();
     return (data && data.products) || [];
   } catch (e) {
@@ -25,6 +27,7 @@ export async function getProduct(id) {
 
 export async function getRandomProducts(limit) {
   try {
+    console.log("api", api);
     const { data } = await (
       await fetch(api + `/random-products${limit ? `?limit=${limit}` : ""}`)
     ).json();
@@ -33,5 +36,6 @@ export async function getRandomProducts(limit) {
   } catch (e) {
     console.log("error", e);
     alert("error");
+    return [];
   }
 }

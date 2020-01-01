@@ -1,111 +1,86 @@
 const Product = require("../models/product");
-const APIFeatures = require("../utils/apiFeatures");
-const catchAsync = require("../utils/asyncFunctions");
+const sharp = require("sharp");
+const shortid = require("shortid");
+const multer = require("multer");
 const AppError = require("../utils/appError");
-const { keyword } = require("../others/filter");
+const catchAsync = require("../utils/asyncFunctions");
+const multerStorage = multer.memoryStorage();
 
-export const getProductsAllAdmin = catchAsync(async (req, res, next) => {
-  const features = new APIFeatures(
-    Product.find({ ...keyword(req.query.keyword) }),
-    req.query
-  )
-    .filter()
-    .sort()
-    .limitFields()
-    .pagination();
-
-  req.query.limit = 10;
-
-  const count = await Product.countDocuments({ ...keyword(req.query.keyword) });
-
-  const product = await features.query.select("-createdAt -updatedAt");
-
-  if (!product) {
-    return next(new AppError("those credentials were not found sorry :(", 404));
-  }
-
-  res.status(200).json({
-    status: "success",
-    pages: Math.ceil(count / req.query.limit),
-    // pageNumber: Number(req.query.page),
-    results: count,
-    data: {
-      product,
-    },
-  });
-});
-
-export const getProductsAllAdminCount = catchAsync(async (req, res, next) => {
-  const product = await Product.countDocuments({
-    ...keyword(req.query.keyword),
-  });
-
-  res.status(200).json({
-    status: "success",
-    data: {
-      product,
-    },
-  });
-});
-
-// @desc    Fetch all products
-// @route   GET /api/products
-// @access  Public
-const getProducts = catchAsync(async (req, res, next) => {
-  req.query.limit = 10;
-
-  let filter = { ...keyword(req.query.keyword) };
-
-  const features = new APIFeatures(Product.find(filter), req.query)
-    .filter()
-    .sort()
-    .limitFields()
-    .pagination();
-
-  const count = await Product.countDocuments({ ...keyword(req.query.keyword) });
-
-  const product = await features.query.select("-owner");
-
-  if (!features.queryString.keyword)
-    return next(new AppError("Please put in a search term !!!!!", 400));
-
-  if (product.length === 0) {
-    return next(new AppError("those credentials were not found sorry :(", 404));
-  }
-
-  res.status(200).json({
-    status: "success",
-    pages: Math.ceil(count / req.query.limit),
-    // pageNumber: Number(req.query.page),
-    results: count,
-    data: {
-      product,
-    },
-  });
-});
-
-// @desc    Fetch single product
-// @route   GET /api/products/:id
-// @access  Public
-const getProductById = catchAsync(async (req, res) => {
-  const product = await Product.findById(req.params.id);
-
-  if (product) {
-    res.status(201).json({
-      status: "success",
-      data: {
-        product,
-      },
-    });
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith("image")) {
+    cb(null, true);
   } else {
-    return next(new AppError("Product not found", 404));
+    cb(new AppError("Not an image! Please upload only images", 400), false);
   }
+};
+
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
 });
 
-// @desc    Delete a product
-// @route   DELETE /api/products/:id
-// @access  Private/Admin
-const deleteProduct = catchAsync(async (req, res, next) => {
+exports.uploadProducts = upload.array("images", 3);
+
+exports.resizePhotos = catchAsync(async (req, res, next) => {
+  if (!req.files) return next();
+
+  req.body.images = [];
+  await Promise.all(
+    req.files.map(async (file, i) => {
+      const filename = `products-${shortid()}-${Date.now()}-${i + 1}.jpeg`;
+
+      await sharp(file.buffer)
+        .resize(500, 500)
+        .toFormat("jpeg")
+        .jpeg({ quality: 90 });
+      // .toFile(`./public/img/products/${filename}`);
+      // await sharp(req.file.buffer).resize(500, 500).toFormat('jpeg').jpeg({ quality: 90 }).toFile(`./app/public/img/users/${req.file.filename}`)
+      req.body.images.push(filename.toString());
+    })
+  );
+  next();
+});
+
+exports.updateProduct = catchAsync(async (req, res, next) => {
+  const arr = ({
+    name,
+    price,
+    description,
+    image,
+    brand,
+    category,
+    quantity,
+  } = req.body);
+
+  const _id = req.params.id;
+
+  // if (req.file) req.body.images = req.file.filename;
+  if (req.file) arr.images = req.file.filename;
+
+  if (!req.body) {
+    return next(new AppError("please put in a vaild input", 404));
+  }
+
+  const doc = await Product.findOne({ _id });
+
+  if (!doc) {
+    return next(new AppError("No document found with that ID", 404));
+  }
+
+  const info = await Product.findByIdAndUpdate(_id, arr, {
+    new: true,
+    validateBeforeSave: false,
+  });
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      product: info,
+    },
+  });
+});
+
+exports.deleteProduct = catchAsync(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
 
   if (product) {
@@ -116,10 +91,7 @@ const deleteProduct = catchAsync(async (req, res, next) => {
   }
 });
 
-// @desc    Create a product
-// @route   POST /api/products
-// @access  Private/Admin
-const createProduct = catchAsync(async (req, res, next) => {
+exports.createProduct = catchAsync(async (req, res, next) => {
   const arr = ({
     name,
     price,
