@@ -1,0 +1,244 @@
+.cart {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.496);
+  padding: 0;
+  margin: 0;
+  z-index: 1000000;
+  position: relative;
+  position: fixed;
+  transition: ease all 0.4s;
+  opacity: 0;
+  visibility: hidden;
+
+  @media (max-width: 375px) {
+    height: 110vh;
+  }
+
+  &:target {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__close {
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    right: 2rem;
+    background-image: url(/img/cross.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__container {
+    top: 3rem;
+    position: absolute;
+    width: 50%;
+    height: 90vh;
+    background-color: white;
+    border-radius: 0.4rem;
+    justify-content: center;
+    padding: 2rem;
+    background-image: url(/img/backgroungimg.png);
+    background-repeat: no-repeat;
+    background-size: 400%;
+    background-position: center;
+    box-shadow: rgba(0, 0, 0, 0.483) 0 0 2rem 0.5rem;
+    @media (max-width: 375px) {
+      width: 90%;
+      align-items: center;
+      padding: 1rem;
+      position: fixed;
+      right: 3.3rem;
+    }
+  }
+
+  &__header {
+    font-size: 3rem;
+    padding: 0.5rem;
+    font-weight: 600;
+    @media (max-width: 375px) {
+      font-size: 2.5rem;
+    }
+  }
+
+  &__sub {
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+  }
+
+  &__big-con-1 {
+    position: relative;
+    border-radius: 0.4rem;
+    display: flex;
+    margin-bottom: 0.5rem;
+    margin-left: 3rem;
+    justify-content: space-around;
+    font-weight: 600;
+    font-size: 1.5rem;
+    @media (max-width: 375px) {
+      font-size: 1rem;
+    }
+  }
+
+  &__scroll {
+    overflow: scroll;
+    height: 65%;
+  }
+
+  &__big-con {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 0.2rem rgba(216, 216, 216, 0.653);
+    border-radius: 0.4rem;
+  }
+
+  &__small-con {
+    border-radius: 0.4rem;
+    display: flex;
+    padding: 2.5rem 0rem;
+  }
+
+  &__box-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__box {
+    position: relative;
+    width: 80%;
+    height: 5vh;
+    text-align: center;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    border-left: rgba(230, 230, 230, 0.653) solid 0.01rem;
+    align-content: center;
+    justify-content: center;
+
+    &:nth-child(1) {
+      border-left: none;
+    }
+  }
+
+  &__quantity {
+    width: 25%;
+    height: 2.5rem;
+    border: solid 0.1rem rgb(224, 224, 224);
+    border-radius: 0.4rem;
+  }
+
+  &__img {
+    width: 6rem;
+  }
+
+  &__box-1 {
+  }
+  &__box-2 {
+    font-size: 1.3rem;
+  }
+  &__box-3 {
+  }
+  &__box-4 {
+    font-size: 1.3rem;
+  }
+  &__box-5 {
+    font-size: 1.3rem;
+  }
+
+  &__remove-btn-box {
+    padding: 0rem 1rem;
+    display: flex;
+    margin-bottom: 0.5rem;
+  }
+
+  &__remove-icon {
+    background-image: url(/img/cancel-circle.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 1.2rem;
+    width: 1.2rem;
+    margin-right: 0.3rem;
+  }
+
+  &__remove-text {
+    font-size: 1rem;
+    align-self: center;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  &__remove-icon,
+  &__remove-text:hover {
+    color: rgb(255, 0, 0);
+  }
+
+  &__total-con {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1.5rem;
+    width: 20rem;
+    right: 3rem;
+    bottom: 3rem;
+  }
+
+  &__total-text {
+    position: relative;
+    display: block;
+    right: 1rem;
+    top: 0.5rem;
+    font-size: 2.3rem;
+    @media (max-width: 375px) {
+      font-size: 1.3rem;
+    }
+  }
+
+  &__total-price {
+    position: relative;
+    display: block;
+    color: rgb(255, 8, 0);
+    font-weight: 700;
+    font-size: 3rem;
+    @media (max-width: 375px) {
+      font-size: 2rem;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.proceed-btn {
+  border: none;
+  background-color: rgb(255, 4, 0);
+  padding: 1.5rem 2.5rem;
+  border-radius: 0.4rem;
+  position: relative;
+  margin-bottom: 3rem;
+  top: 2rem;
+  @media (max-width: 375px) {
+    padding: 1rem 1.5rem;
+  }
+}
+
+.proceed-btn-txt {
+  color: white;
+  text-decoration: none;
+}

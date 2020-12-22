@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3ad977df.chunk.css",
+    "main.js": "/static/js/main.2d6c923f.chunk.js",
+    "main.js.map": "/static/js/main.2d6c923f.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.fb812307.js",
+    "runtime-main.js.map": "/static/js/runtime-main.fb812307.js.map",
+    "static/js/2.daa22849.chunk.js": "/static/js/2.daa22849.chunk.js",
+    "static/js/2.daa22849.chunk.js.map": "/static/js/2.daa22849.chunk.js.map",
+    "static/js/3.dc0c9552.chunk.js": "/static/js/3.dc0c9552.chunk.js",
+    "static/js/3.dc0c9552.chunk.js.map": "/static/js/3.dc0c9552.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.3ad977df.chunk.css.map": "/static/css/main.3ad977df.chunk.css.map",
+    "static/js/2.daa22849.chunk.js.LICENSE.txt": "/static/js/2.daa22849.chunk.js.LICENSE.txt",
+    "static/media/home.scss": "/static/media/quality-svgrepo-com.6338d0a1.svg",
+    "static/media/products.scss": "/static/media/basket-with-vegetables.49e5ee39.jpg",
+    "static/media/shoppingCart.scss": "/static/media/cross.d5ab96da.svg",
+    "static/media/header.scss": "/static/media/user.3e95d96e.svg",
+    "static/media/footer.scss": "/static/media/payment.c0ca5668.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fb812307.js",
+    "static/js/2.daa22849.chunk.js",
+    "static/css/main.3ad977df.chunk.css",
+    "static/js/main.2d6c923f.chunk.js"
+  ]
+}

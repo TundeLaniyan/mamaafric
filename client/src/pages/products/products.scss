@@ -1,0 +1,275 @@
+.food {
+  height: 45vh;
+  display: flex;
+  width: 100%;
+  position: relative;
+  justify-content: flex-end;
+  align-content: center;
+  background-image: url(/img/basket-with-vegetables.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &__container {
+    width: 20%;
+    text-align: right;
+    top: 4rem;
+    right: 12rem;
+    position: relative;
+  }
+  &__header {
+    font-size: 5rem;
+    font-weight: 600;
+  }
+
+  &__header-small {
+    font-size: 1.8rem;
+  }
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  padding: 3rem;
+  justify-content: center;
+  box-shadow: 0 0 0.9rem -0.5rem rgba(0, 0, 0, 0.493);
+  align-items: flex-start;
+
+  &__side-menu-container {
+    position: relative;
+    width: 15%;
+    border-radius: 0.4rem;
+    margin-right: 1.5rem;
+    border-radius: 0.4rem;
+    border: rgb(238, 235, 235) solid 0.1rem;
+    background-color: white;
+  }
+
+  &__side-header {
+    padding: 1rem;
+    border-bottom: solid 0.1rem rgb(228, 224, 224);
+    border-top: solid 0.1rem rgb(228, 224, 224);
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  &__category__list,
+  &__brand__list {
+    list-style: none;
+    padding: 0.4rem 3rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+}
+
+.mainproduct {
+  width: 70%;
+  border-radius: 0.4rem;
+  border: solid 0.1rem rgb(228, 224, 224);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 0.9rem -0.5rem rgba(0, 0, 0, 0.493);
+  background-color: white;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 0.1rem rgb(228, 224, 224);
+  }
+
+  &__header {
+    font-size: 2.5rem;
+    font-weight: 500;
+  }
+  &__header,
+  .sort,
+  .sort-box {
+    padding: 1.5rem;
+  }
+
+  &__sort-container {
+    display: flex;
+    font-size: 1rem;
+    // background-color: yellow;
+    width: 40%;
+    justify-content: flex-end;
+  }
+  &__sort {
+    align-self: center;
+    margin-right: 0.5rem;
+    font-size: 1.4rem;
+  }
+  &__sort-box {
+    align-self: center;
+    width: 40%;
+    border: solid 0.1rem rgb(228, 224, 224);
+    margin-right: 2rem;
+    height: 3rem;
+    border-radius: 0.4rem;
+  }
+
+  .goods {
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    padding: 1rem;
+    width: 100%;
+    overflow: hidden;
+
+    &__container {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-content: center;
+      width: 25%;
+      position: relative;
+      margin: 1rem;
+    }
+
+    &__image {
+      height: 18rem;
+      width: 19.5rem;
+      display: block;
+      transition: ease 0.5s;
+      align-self: center;
+      &:hover {
+        transform: scale(1.07);
+      }
+    }
+
+    &__name,
+    &__price {
+      text-align: center;
+      margin: 0.3rem;
+    }
+
+    &__name {
+      font-size: 1.8rem;
+      font-weight: 500;
+    }
+
+    &__price {
+      font-size: 1.8rem;
+      color: rgb(255, 0, 0);
+    }
+
+    &__add-basket-btn {
+      margin: 0.3rem;
+      padding: 1.2rem 0.1rem;
+      background-color: #ffe7ba;
+    }
+
+    &__add-basket-text {
+      text-decoration: none;
+      color: black;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+  }
+}
+
+.product-found {
+  width: 100%;
+  border-bottom: solid 0.1rem rgb(228, 224, 224);
+  align-self: center;
+  padding: 1rem;
+  font-size: 1.4rem;
+}
+
+.slider {
+  &__limit {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__value {
+    text-align: center;
+    font-weight: 700;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    margin: 18px 10%;
+    width: 80%;
+  }
+  input[type="range"]:focus {
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-runnable-track {
+    width: 80%;
+    height: 8.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    //   background: #3071a9;
+    background: #ffe7ba;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #272520;
+    height: 18px;
+    width: 15px;
+    border-radius: 37.5%;
+    background: #7e715c;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -6px;
+  }
+  input[type="range"]:focus::-webkit-slider-runnable-track {
+    background: #fce0ad;
+  }
+  input[type="range"]::-moz-range-track {
+    width: 80%;
+    height: 8.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #ffe7ba;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+  }
+  input[type="range"]::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #272520;
+    height: 18px;
+    width: 15px;
+    border-radius: 37.5%;
+    background: #7e715c;
+    cursor: pointer;
+  }
+  input[type="range"]::-ms-track {
+    width: 80%;
+    height: 8.4px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    border-width: 16px 0;
+    color: transparent;
+  }
+  input[type="range"]::-ms-fill-lower {
+    background: #7e715c;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  }
+  input[type="range"]::-ms-fill-upper {
+    background: #7e715c;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  }
+  input[type="range"]::-ms-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #272520;
+    height: 18px;
+    width: 15px;
+    border-radius: 37.5%;
+    background: #7e715c;
+    cursor: pointer;
+  }
+  input[type="range"]:focus::-ms-fill-lower {
+    background: #7e715c;
+  }
+  input[type="range"]:focus::-ms-fill-upper {
+    background: #7e715c;
+  }
+}

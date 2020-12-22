@@ -1,0 +1,68 @@
+.smallnav {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  height: 4.5rem;
+  display: flex;
+  justify-content: center;
+  border-bottom: rgb(238, 235, 235) solid 0.1rem;
+  background-color: white;
+
+  &__top {
+    // background-color: yellow;
+  }
+
+  &__list {
+    list-style: none;
+    text-align: center;
+    z-index: 99999;
+    background-color: white;
+    font-weight: 500;
+    border-radius: 0.4rem;
+  }
+
+  &__link {
+    text-decoration: none;
+    padding: 0rem 2rem;
+    color: rgba(0, 0, 0, 0.735);
+    font-size: 1.2;
+    font-weight: 600;
+  }
+
+  &__item {
+    text-align: left;
+    width: 20rem;
+    padding: 0.5rem;
+    box-shadow: 0 0.3rem 0.9rem -0.5rem rgba(0, 0, 0, 0.493);
+  }
+  &__droplist {
+    border-top: 0.3rem rgb(255, 0, 0) solid;
+  }
+}
+
+.smallnav__list-a {
+  background-color: #ffe7ba;
+}
+
+.smallnav ul li {
+  width: 20rem;
+  line-height: 4.5rem;
+  float: left;
+  font-size: 1.3rem;
+  position: relative;
+  list-style: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.smallnav ul li:hover {
+  //   background-color: rgb(231, 231, 231);
+}
+
+.smallnav ul ul {
+  display: none;
+}
+
+.smallnav ul li:hover > ul {
+  display: block;
+}

@@ -1,0 +1,250 @@
+.checkout-icon {
+  position: relative;
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  margin-right: 0.5rem;
+  margin-left: 5rem;
+  top: 0.5rem;
+
+  @media (max-width: 550px) {
+    margin-left: 0rem;
+    justify-content: center;
+  }
+}
+.checkout-strip {
+  background-color: transparent;
+  width: 100%;
+  display: flex;
+  padding: 1rem;
+  @media (max-width: 550px) {
+    justify-content: center;
+  }
+}
+
+.checkout-title {
+  display: inline-block;
+  font-size: 3rem;
+}
+
+.checkout {
+  &__container-1 {
+    width: 30%;
+    background-color: white;
+    box-shadow: 0 0 0.8rem 0.2rem rgba(0, 0, 0, 0.163);
+    border-radius: 0.4rem;
+    display: inline-block;
+    justify-content: center;
+    position: relative;
+    left: 12rem;
+    top: 3rem;
+    // float: left;
+
+    @media (max-width: 550px) {
+      left: 0;
+      top: 0;
+      width: 100%;
+      box-shadow: none;
+    }
+  }
+  &__container-2 {
+    width: 20%;
+    border-radius: 0.4rem;
+    box-shadow: 0 0 0.8rem 0.2rem rgba(0, 0, 0, 0.163);
+    display: inline-block;
+    background-color: white;
+    position: relative;
+    left: 15rem;
+    top: -44rem;
+    padding: 1rem;
+    // float: left;
+
+    @media (max-width: 550px) {
+      left: 0;
+      width: 100%;
+      box-shadow: none;
+    }
+  }
+
+  &__inner-con {
+    margin: 1rem;
+  }
+
+  &__items,
+  &__price {
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+  }
+}
+.billing__title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  text-align: center;
+  font-weight: 800;
+}
+.billing__text {
+  font-size: 1.4rem;
+  margin-bottom: 0.2rem;
+}
+
+.billing__input {
+  width: 100%;
+  height: 3.5rem;
+  border-radius: 0.4rem;
+  border: solid 0.1rem rgb(202, 202, 202);
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+.inner-box-1 {
+  width: 100%;
+
+  &__header {
+    padding: 1rem 2rem;
+    border-bottom: solid rgb(191, 191, 191) 0.1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  &__totalprice,
+  &__total {
+    padding: 1rem 2rem;
+    font-size: 1.8rem;
+    font-weight: 900;
+  }
+  &__totalprice {
+    color: rgb(255, 38, 0);
+  }
+}
+.inner-box-2 {
+  // background-color: rgb(128, 47, 38);
+  width: 100%;
+  text-align: right;
+  font-size: 2rem;
+  // padding: 0rem 2rem;
+}
+
+.check {
+  display: flex;
+}
+
+.payment {
+  width: 25%;
+  border-radius: 0.4rem;
+  box-shadow: 0 0 0.8rem 0.2rem rgba(0, 0, 0, 0.163);
+  display: inline-block;
+  position: relative;
+  // float: right;
+  top: -14rem;
+  right: -18rem;
+  height: auto;
+
+  @media (max-width: 550px) {
+    left: 0;
+    width: 100%;
+    top: 6rem;
+    box-shadow: none;
+  }
+
+  &__container {
+    max-width: 100%;
+    height: auto;
+    margin-right: 5rem auto;
+    padding: 2rem 2rem 3rem;
+    border-top: solid rgb(255, 38, 0) 0.7rem;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 0.8rem 0.2rem rgba(0, 0, 0, 0.163);
+    position: relative;
+    border-radius: 0.4rem;
+  }
+
+  &__title {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 800;
+    margin-bottom: 2rem;
+  }
+
+  &__input-form {
+    margin-bottom: 2rem;
+  }
+
+  &__section-1 {
+  }
+
+  &__section-2 {
+  }
+
+  &__section-3 {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__items {
+    margin-bottom: 2rem;
+  }
+
+  &__label {
+    display: block;
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+
+  &__input {
+    border: 0.02rem solid #bdbdbd;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.4rem;
+  }
+  &__cvc {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  &__tooltip {
+    border: 0.2rem solid #000000;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    text-align: center;
+
+    &__tooltip:hover > .payment__cvc-img {
+      display: block;
+    }
+  }
+
+  &__tooltip:hover > .payment__cvc-img {
+    display: block;
+  }
+
+  &__cvc-img {
+    position: absolute;
+    right: 0rem;
+    top: -8rem;
+    border-radius: 0.4rem;
+    background-color: rgb(226, 226, 226);
+    padding: 0.5rem;
+    display: none;
+  }
+
+  &__cvc img {
+    width: 10rem;
+  }
+
+  &__btn {
+    background-color: rgb(255, 38, 0);
+    color: rgb(255, 255, 255);
+    font-size: 1.6rem;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 700;
+    letter-spacing: 0.2rem;
+  }
+}

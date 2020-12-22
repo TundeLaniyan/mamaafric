@@ -1,0 +1,460 @@
+.home-img {
+  height: 60vh;
+  background-color: rgb(245, 245, 245);
+  background-image: url(/img/cashew-nut-1098177_1920.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  position: relative;
+  z-index: 5;
+
+  &__container {
+    position: relative;
+    width: 40%;
+    top: 5rem;
+    left: 8rem;
+  }
+  &__header {
+    font-size: 4.5rem;
+    background-color: rgba(255, 187, 0, 0.401);
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #44231d;
+    padding: 1rem;
+  }
+}
+.top-banner {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  border-bottom: rgb(238, 235, 235) solid 0.1rem;
+  background-image: url(/img/backgroungimg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: -5rem;
+
+  &__content {
+    display: inline-block;
+    color: #e47b58;
+    font-size: 1.1rem;
+    letter-spacing: 0.8rem;
+    margin: 0rem 3rem;
+  }
+}
+
+.banner-container {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  width: 85%;
+  margin: 1rem auto;
+}
+
+.banner {
+  width: 50%;
+  position: relative;
+}
+
+.llll {
+  width: 24%;
+  position: relative;
+}
+
+.banner-2-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 2rem;
+}
+.banner-2 {
+  position: relative;
+  width: 50%;
+  border-radius: 0.4rem;
+}
+
+.service {
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+  align-content: center;
+  z-index: 10000;
+  padding: 1.5rem;
+  border-bottom: rgb(238, 235, 235) solid 0.1rem;
+  background-color: white;
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 0.8rem;
+    width: 22%;
+    border-radius: 0.4rem;
+  }
+  &__box {
+    padding: 0rem 1rem;
+    height: 4rem;
+  }
+
+  &__icon {
+    height: 6rem;
+    width: 6rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &__icon-1 {
+    background-image: url(/img/delivery-truck-free-svgrepo-com.svg);
+  }
+  &__icon-2 {
+    background-image: url(/img/lettuce.svg);
+  }
+  &__icon-3 {
+    background-image: url(/img/quality-svgrepo-com.svg);
+  }
+  &__icon-4 {
+    background-image: url(/img/headphones-support-svgrepo-com.svg);
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
+  &__text {
+    color: rgb(181, 119, 4);
+    margin-top: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+}
+
+.hover {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  width: 100%;
+  height: 15rem;
+  right: 0;
+  top: 0;
+  position: absolute;
+  opacity: 0;
+  transition: all ease-in-out 0.3s;
+
+  &:hover {
+    opacity: 1;
+    // transform: scale(1.03);
+  }
+
+  &__icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    top: 0;
+    right: 0;
+    position: absolute;
+  }
+}
+.latest-box {
+  display: block;
+  position: relative;
+}
+
+.latest,
+.see-all {
+  left: 1rem;
+  font-size: 1.3rem;
+  display: inline-block;
+  border-radius: 0.4rem;
+  padding: 0.5rem 0.5rem;
+}
+
+.see-all {
+  float: right;
+  margin-right: 2rem;
+  background-color: rgb(255, 187, 0);
+}
+
+.container {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 1rem;
+  position: relative;
+  width: 90%;
+  justify-content: center;
+  height: 25rem;
+  margin-bottom: 2rem;
+}
+
+#i1,
+#i2,
+#i3 {
+  display: none;
+}
+
+.pre,
+.next {
+  // width: 5%;
+  // height: 5%;
+  position: absolute;
+  top: 7rem;
+  z-index: 99;
+  cursor: pointer;
+  // display: flex;
+  // flex-direction: column;
+  // background-color: purple;
+  display: block;
+}
+
+.pre {
+  left: -5%;
+}
+.pre-icon,
+.next-icon {
+  display: block;
+  height: 2rem;
+  width: 2rem;
+  &:hover {
+    transform: scale(1.5);
+  }
+}
+
+.next {
+  right: -5%;
+}
+
+.bav {
+  width: 100%;
+  height: 11px;
+  bottom: -2rem;
+  position: absolute;
+  text-align: center;
+  z-index: 99;
+}
+
+.dots {
+  // top:-5px;
+  width: 1rem;
+  height: 1rem;
+  margin: 0 0.4rem;
+  position: relative;
+  border-radius: 50%;
+  display: inline-block;
+  border: solid rgb(196, 194, 194) 0.1rem;
+  // background: rgba(0, 0, 0, 0.592);
+}
+
+#i1:checked ~ #one,
+#i2:checked ~ #two {
+  z-index: 9;
+}
+
+#i1:checked ~ .bav #dot1,
+#i2:checked ~ .bav #dot2 {
+  background-color: #7a7575;
+}
+
+.products-slidder {
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+  padding: 1rem;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+
+  &:nth-child(2) {
+    position: relative;
+  }
+}
+
+.products-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  width: 17rem;
+  position: relative;
+  transition: ease 0.4s;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.05);
+    // border: lawngreen solid 0.01rem;
+  }
+}
+
+.products-image {
+  height: 12rem;
+  width: 12.5rem;
+  display: block;
+  align-self: center;
+}
+
+.products-name {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.products-price,
+.products-name {
+  text-align: center;
+  margin: 0.3rem;
+}
+
+.products-price {
+  font-size: 1.5rem;
+  color: rgb(255, 8, 0);
+}
+.add-basket-btn {
+  margin: 0.3rem;
+  padding: 1.2rem 0.2rem;
+  background-color: #ffe7ba;
+}
+
+.add-basket-text {
+  text-decoration: none;
+  color: black;
+  font-size: 1.4rem;
+}
+
+.social {
+  position: absolute;
+  z-index: 999999;
+  width: 8rem;
+  border: rgb(238, 235, 235) solid 0.1rem;
+  background-color: white;
+
+  &__icon {
+    height: 4rem;
+    width: 4rem;
+    display: block;
+    margin: 2rem;
+    background-position: center;
+    background-size: cover;
+  }
+
+  &__icon-1 {
+    background-image: url(/img/facebook-icon.png);
+  }
+  &__icon-2 {
+    background-image: url(/img/instagram-icon.png);
+  }
+  &__icon-3 {
+    background-image: url(/img/twitter-icon.png);
+  }
+  &__icon-4 {
+    background-image: url(/img/email-icon.png);
+  }
+}
+
+.flyer-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: rgb(226, 174, 78);
+  padding: 1rem;
+}
+.flyer {
+  height: 15rem;
+  width: 15rem;
+}
+
+section {
+  width: 85%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  position: relative;
+  margin: 1rem auto;
+  box-shadow: 0 0 0.9rem -0.5rem rgba(0, 0, 0, 0.493);
+  border-radius: 0.4rem;
+  overflow: hidden;
+
+  &:nth-child(2) {
+    width: 100%;
+  }
+}
+
+.graphics {
+  position: relative;
+  background-color: #e5c027;
+  height: 15rem;
+  margin-bottom: 3rem;
+  top: 13rem;
+  background-image: url(/img/FRFD.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.category {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__box {
+    height: 6rem;
+    width: 15%;
+    border: rgb(238, 235, 235) solid 0.1rem;
+    border-radius: 0.5rem;
+    margin: 0rem;
+    margin: 0.5rem;
+    display: inline-block;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &__box-1 {
+    background-image: url(/img/basket-with-vegetables.jpg);
+  }
+  &__box-2 {
+    background-image: url(/img/cleaning-cleaning-equipment.jpg);
+  }
+  &__box-3 {
+    background-image: url(/img/basket-with-vegetables.jpg);
+  }
+  &__box-4 {
+    background-image: url(/img/cleaning-cleaning-equipment.jpg);
+  }
+  &__box-5 {
+    background-image: url(/img/basket-with-vegetables.jpg);
+  }
+  &__box-6 {
+    background-image: url(/img/cleaning-cleaning-equipment.jpg);
+  }
+
+  &__text {
+    position: relative;
+    font-size: 1.4rem;
+    float: right;
+    top: 2rem;
+    right: 0.5rem;
+    font-weight: 700;
+    color: #ff0800;
+  }
+
+  &__btn {
+    position: relative;
+    width: 5rem;
+    height: 1.5rem;
+    border: none;
+    border-radius: 0.04rem;
+    background-color: rgb(238, 235, 235);
+    // background-color:rgba(255, 187, 0, 0.544);
+    top: 4rem;
+    overflow: hidden;
+  }
+
+  &__btn-text {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+  }
+}

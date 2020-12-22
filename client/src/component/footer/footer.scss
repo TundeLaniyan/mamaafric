@@ -1,0 +1,165 @@
+.mail-list {
+  display: flex;
+  background-color: #5d3f35;
+  padding: 2rem;
+
+  &__container {
+    display: block;
+    position: relative;
+    margin: 0rem auto;
+    background-color: #653a2c;
+    padding: 2rem;
+    justify-content: center;
+    text-align: center;
+    width: 40%;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    box-shadow: 0 0.3rem 0.9rem -0.3rem rgba(0, 0, 0, 0.727);
+  }
+
+  &__header {
+    font-size: 1.5rem;
+  }
+
+  &__para {
+    font-size: 1.3rem;
+  }
+
+  &__header,
+  &__para,
+  &__input {
+    margin: 1rem 0rem;
+    color: white;
+  }
+
+  &__input {
+    height: 3rem;
+    width: 60%;
+    border-radius: 0.4rem;
+    border: none;
+    margin-right: 1rem;
+    padding: 0 1.5rem;
+  }
+
+  &__btn {
+    // height: 2rem;
+    // width: 5rem;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    background-color: rgb(255, 8, 0);
+    border-radius: 0.4rem;
+    box-shadow: 0 0.3rem 0.9rem -0.5rem rgba(0, 0, 0, 0.829);
+  }
+
+  &__btn-text {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2rem;
+  background-color: #44231d;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-weight: 100;
+  }
+
+  &__logo {
+    height: 8rem;
+  }
+
+  &__box {
+    flex: 0 0 18%;
+    margin: 0rem 0.5rem;
+  }
+
+  &__title {
+    margin: 0.5rem 0rem;
+    font-weight: 700;
+    color: rgb(255, 8, 0);
+    font-size: 1.4rem;
+  }
+
+  &__para {
+    margin: 0.5rem 0rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  &__list {
+    list-style: none;
+  }
+
+  &__text {
+    margin: 0.5rem 0rem;
+    font-size: 1.3rem;
+    font-weight: 200;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__small {
+    padding: 1rem;
+    text-align: center;
+    background-color: #2e1f1a;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  &__left-box {
+    // / background-color: white;
+    position: relative;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__social {
+    z-index: 999999;
+    border: rgb(238, 235, 235) solid 0.1rem;
+    display: flex;
+    width: 100%;
+    margin-bottom: 5rem;
+    justify-content: space-around;
+    padding: 1rem;
+
+    &__icon {
+      height: 4rem;
+      width: 4rem;
+      background-position: center;
+      background-size: cover;
+    }
+
+    &__icon-1 {
+      background-image: url(/img/facebook-icon.png);
+    }
+    &__icon-2 {
+      background-image: url(/img/instagram-icon.png);
+    }
+    &__icon-3 {
+      background-image: url(/img/twitter-icon.png);
+    }
+    &__icon-4 {
+      background-image: url(/img/email-icon.png);
+    }
+  }
+}
+
+.payment-method {
+  height: 4rem;
+  width: 100%;
+  background-image: url(/img/payment.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: white;
+}
