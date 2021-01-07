@@ -9,13 +9,19 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-
+  @media (max-width: 76.8em) {
+    height: 30vh;
+  }
   &__container {
     width: 20%;
     text-align: right;
     top: 4rem;
     right: 12rem;
     position: relative;
+    @media (max-width: 76.8em) {
+      width: 33%;
+      right: 1rem;
+    }
   }
   &__header {
     font-size: 5rem;
@@ -34,7 +40,9 @@
   justify-content: center;
   box-shadow: 0 0 0.9rem -0.5rem rgba(0, 0, 0, 0.493);
   align-items: flex-start;
-
+  @media (max-width: 76.8em) {
+    padding: 0rem;
+  }
   &__side-menu-container {
     position: relative;
     width: 15%;
@@ -168,6 +176,63 @@
   }
 }
 
+.productslide {
+  width: 100%;
+  padding: 1rem;
+  &__close {
+    background-color: crimson;
+    height: 1.5rem;
+    width: 1.5rem;
+    position: relative;
+    top: 0.5rem;
+    float: left;
+    left: 0.5rem;
+    display: block;
+    cursor: pointer;
+    z-index: 99999;
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    background-color: rgb(255, 196, 0);
+  }
+  &__header {
+    color: rgb(255, 0, 0);
+    font-weight: 600;
+    padding: 0.5rem 0rem;
+    border-top: solid rgb(216, 216, 216) 0.001rem;
+  }
+  &__items {
+    list-style: none;
+  }
+  &__links {
+    padding: 1rem 0rem;
+    border-bottom: solid rgb(216, 216, 216) 0.001rem;
+    cursor: pointer;
+    display: block;
+    &:nth-child(4) {
+      margin-bottom: 2rem;
+    }
+  }
+  &__checkbox {
+    display: none;
+  }
+  &__social-icon {
+    width: 2rem;
+  }
+  &__droplist {
+    padding: 0.5rem 1.5rem;
+    list-style: none;
+    display: none;
+  }
+  &__droplinks {
+    padding: 0.5rem 0rem;
+    margin-bottom: 0rem;
+  }
+}
 .product-found {
   width: 100%;
   border-bottom: solid 0.1rem rgb(228, 224, 224);

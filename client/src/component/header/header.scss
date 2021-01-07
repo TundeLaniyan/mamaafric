@@ -6,9 +6,24 @@ header {
   padding: 1.5rem;
   border-bottom: rgb(238, 235, 235) solid 0.1rem;
   background-color: white;
-
+  @media (max-width: 64em) {
+    flex-direction: column;
+    padding: 1rem 2rem;
+    height: 18rem;
+  }
   .logo {
     height: 5.5rem;
+    @media (max-width: 64em) {
+      top: 2rem;
+      position: absolute;
+      left: 10rem;
+      height: 7.5rem;
+      width: 30rem;
+      z-index: 9999999;
+    }
+    @media (max-width: 23.4em) {
+      left: 7rem;
+    }
   }
 
   .search-bar {
@@ -19,6 +34,12 @@ header {
     width: 50vw;
     border-radius: 0.4rem;
     padding: 0 2.5rem;
+    @media (max-width: 64em) {
+      width: 100%;
+      position: relative;
+      top: 2.6rem;
+      height: 5rem;
+    }
   }
 
   .btn {
@@ -34,6 +55,9 @@ header {
     border-radius: 0.4rem;
     transition: 0.3s ease;
     cursor: pointer;
+    @media (max-width: 64em) {
+      display: none;
+    }
   }
   .btn:hover {
     background-color: rgb(199, 7, 0);
@@ -52,6 +76,13 @@ header {
   .icon-box {
     display: flex;
     padding: 0.8rem;
+    @media (max-width: 64em) {
+      right: 0rem;
+      display: flex;
+      /* width: 8rem; */
+      top: 3.5rem;
+      position: absolute;
+    }
   }
 
   .cart-amount {
@@ -76,6 +107,9 @@ header {
   .icon-text {
     font-size: 1.8rem;
     color: rgba(0, 0, 0, 0.735);
+    @media (max-width: 64em) {
+      display: none;
+    }
   }
 
   .icon {
@@ -84,6 +118,11 @@ header {
     margin: 0rem 1.6rem;
     background-repeat: no-repeat;
     background-size: cover;
+    @media (max-width: 64em) {
+      height: 3.8rem;
+      width: 3.8rem;
+      margin: 0;
+    }
   }
 
   .icon-1 {
@@ -294,5 +333,158 @@ header {
     &::after {
       top: 1rem;
     }
+  }
+}
+
+.big {
+  position: fixed;
+  width: 75%;
+  top: 7.5rem;
+  height: 110vh;
+  animation: moveinleft 0.5s ease-in-out;
+  transition: ease 0.5s;
+  z-index: 9999999999;
+  left: 0rem;
+  display: none;
+}
+
+.sidemenu {
+  width: 100%;
+  padding: 1rem;
+  // background-color: #ffe7ba;
+  background-color: white;
+  height: 110vh;
+  &__close {
+    background-color: black;
+    height: 0.2rem;
+    width: 3rem;
+    position: relative;
+    top: 1.5rem;
+    float: left;
+    left: 0.5rem;
+    display: block;
+    cursor: pointer;
+    z-index: 99999;
+    display: none;
+    @media (max-width: 64em) {
+      display: block;
+    }
+  }
+
+  &__close::before,
+  &__close::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    transition: all 0.1s;
+    border-radius: 5rem;
+    height: 0.2rem;
+    width: 3rem;
+    background-color: black;
+  }
+
+  &__close::before {
+    top: -0.7rem;
+  }
+
+  &__close::after {
+    top: 0.7rem;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+  }
+
+  &__logo {
+    // background-image: url(/img/logo1.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: 50%;
+    height: 3.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    align-self: center;
+  }
+  &__header {
+    color: rgb(255, 0, 0);
+    font-weight: 600;
+    padding: 0.5rem 0rem;
+    border-top: solid rgb(216, 216, 216) 0.001rem;
+    font-size: 1rem;
+    // margin-top: 2rem;
+  }
+  &__items {
+    list-style: none;
+  }
+  &__links {
+    padding: 1rem 0rem;
+    border-bottom: solid rgb(216, 216, 216) 0.001rem;
+    cursor: pointer;
+    display: block;
+    font-size: 2rem;
+    &:nth-child(4) {
+      margin-bottom: 2rem;
+    }
+  }
+  &__checkbox {
+    display: none;
+  }
+  &__social {
+    width: 100%;
+    display: flex;
+  }
+  &__social-icon {
+    width: 4rem;
+    height: 4rem;
+  }
+  &__droplist {
+    padding: 0.5rem 1.5rem;
+    list-style: none;
+    display: none;
+  }
+  &__droplinks {
+    list-style: none;
+    padding: 0.5rem 2rem;
+    margin-bottom: 0rem;
+    font-size: 1.5rem;
+  }
+}
+
+span {
+  color: #ce0000;
+  font-size: 0.7rem;
+  position: relative;
+  float: right;
+}
+#checkbox1:checked + .sidemenu__droplist-1 {
+  display: block;
+}
+#checkbox2:checked + .sidemenu__droplist-2 {
+  display: block;
+}
+#checkbox3:checked + .sidemenu__droplist-3 {
+  display: block;
+}
+#close1:checked + .big {
+  display: block;
+}
+.close {
+  display: none;
+}
+@keyframes moveinleft {
+  0% {
+    left: -100rem;
+  }
+  50% {
+    left: -50rem;
+  }
+  100% {
+    left: 0;
   }
 }

@@ -6,10 +6,8 @@
   margin-right: 0.5rem;
   margin-left: 5rem;
   top: 0.5rem;
-
-  @media (max-width: 550px) {
+  @media (max-width: 48em) {
     margin-left: 0rem;
-    justify-content: center;
   }
 }
 .checkout-strip {
@@ -17,16 +15,14 @@
   width: 100%;
   display: flex;
   padding: 1rem;
-  @media (max-width: 550px) {
-    justify-content: center;
+  @media (max-width: 48em) {
+    justify-content: flex-start;
   }
 }
-
 .checkout-title {
   display: inline-block;
   font-size: 3rem;
 }
-
 .checkout {
   &__container-1 {
     width: 30%;
@@ -39,8 +35,10 @@
     left: 12rem;
     top: 3rem;
     // float: left;
-
-    @media (max-width: 550px) {
+    @media (m-width: 102.4em) {
+      width: 25%;
+    }
+    @media (max-width: 48em) {
       left: 0;
       top: 0;
       width: 100%;
@@ -58,18 +56,21 @@
     top: -44rem;
     padding: 1rem;
     // float: left;
-
-    @media (max-width: 550px) {
+    @media (max-width: 102.4em) {
+      width: 22%;
+    }
+    @media (max-width: 48em) {
       left: 0;
       width: 100%;
       box-shadow: none;
+      display: block;
+      position: relative;
+      top: 0;
     }
   }
-
   &__inner-con {
     margin: 1rem;
   }
-
   &__items,
   &__price {
     padding: 1rem 2rem;
@@ -87,7 +88,6 @@
   font-size: 1.4rem;
   margin-bottom: 0.2rem;
 }
-
 .billing__input {
   width: 100%;
   height: 3.5rem;
@@ -98,7 +98,6 @@
 }
 .inner-box-1 {
   width: 100%;
-
   &__header {
     padding: 1rem 2rem;
     border-bottom: solid rgb(191, 191, 191) 0.1rem;
@@ -122,11 +121,9 @@
   font-size: 2rem;
   // padding: 0rem 2rem;
 }
-
 .check {
   display: flex;
 }
-
 .payment {
   width: 25%;
   border-radius: 0.4rem;
@@ -137,14 +134,15 @@
   top: -14rem;
   right: -18rem;
   height: auto;
-
-  @media (max-width: 550px) {
+  @media (max-width: 102.4em) {
+    width: 22%;
+  }
+  @media (max-width: 48em) {
     left: 0;
     width: 100%;
     top: 6rem;
     box-shadow: none;
   }
-
   &__container {
     max-width: 100%;
     height: auto;
@@ -155,34 +153,32 @@
     box-shadow: 0 0 0.8rem 0.2rem rgba(0, 0, 0, 0.163);
     position: relative;
     border-radius: 0.4rem;
+    @media (max-width: 48em) {
+      top: -6rem;
+      margin-bottom: 3rem;
+      box-shadow: none;
+    }
   }
-
   &__title {
     font-size: 2rem;
     text-align: center;
     font-weight: 800;
     margin-bottom: 2rem;
   }
-
   &__input-form {
     margin-bottom: 2rem;
   }
-
   &__section-1 {
   }
-
   &__section-2 {
   }
-
   &__section-3 {
     display: flex;
     justify-content: space-between;
   }
-
   &__items {
     margin-bottom: 2rem;
   }
-
   &__label {
     display: block;
     font-size: 1.5rem;
@@ -190,7 +186,6 @@
     margin-bottom: 0.8rem;
     font-weight: 500;
   }
-
   &__input {
     border: 0.02rem solid #bdbdbd;
     width: 100%;
@@ -203,7 +198,6 @@
     position: relative;
     transition: all 0.3s ease;
   }
-
   &__tooltip {
     border: 0.2rem solid #000000;
     border-radius: 50%;
@@ -211,16 +205,13 @@
     height: 2rem;
     cursor: pointer;
     text-align: center;
-
     &__tooltip:hover > .payment__cvc-img {
       display: block;
     }
   }
-
   &__tooltip:hover > .payment__cvc-img {
     display: block;
   }
-
   &__cvc-img {
     position: absolute;
     right: 0rem;
@@ -230,11 +221,9 @@
     padding: 0.5rem;
     display: none;
   }
-
   &__cvc img {
     width: 10rem;
   }
-
   &__btn {
     background-color: rgb(255, 38, 0);
     color: rgb(255, 255, 255);

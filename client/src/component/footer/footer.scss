@@ -15,6 +15,9 @@
     padding: 1rem;
     border-radius: 0.4rem;
     box-shadow: 0 0.3rem 0.9rem -0.3rem rgba(0, 0, 0, 0.727);
+    @media (max-width: 76.8em) {
+      width: 100%;
+    }
   }
 
   &__header {
@@ -62,40 +65,39 @@
   justify-content: space-evenly;
   padding: 2rem;
   background-color: #44231d;
-
+  @media (max-width: 76.8em) {
+    flex-direction: column;
+  }
   &__container {
     display: flex;
     justify-content: space-between;
     color: white;
     font-weight: 100;
+    @media (max-width: 76.8em) {
+      display: block;
+    }
   }
-
   &__logo {
     height: 8rem;
   }
-
   &__box {
     flex: 0 0 18%;
     margin: 0rem 0.5rem;
   }
-
   &__title {
     margin: 0.5rem 0rem;
     font-weight: 700;
     color: rgb(255, 8, 0);
     font-size: 1.4rem;
   }
-
   &__para {
     margin: 0.5rem 0rem;
     font-size: 1.4rem;
     font-weight: 600;
   }
-
   &__list {
     list-style: none;
   }
-
   &__text {
     margin: 0.5rem 0rem;
     font-size: 1.3rem;
@@ -106,7 +108,6 @@
       text-decoration: underline;
     }
   }
-
   &__small {
     padding: 1rem;
     text-align: center;
@@ -114,15 +115,16 @@
     font-size: 1rem;
     font-weight: 600;
   }
-
   &__left-box {
     // / background-color: white;
     position: relative;
     width: 20%;
     display: flex;
     flex-direction: column;
+    @media (max-width: 76.8em) {
+      width: 100%;
+    }
   }
-
   &__social {
     z-index: 999999;
     border: rgb(238, 235, 235) solid 0.1rem;
@@ -131,14 +133,16 @@
     margin-bottom: 5rem;
     justify-content: space-around;
     padding: 1rem;
-
+    @media (max-width: 76.8em) {
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+    }
     &__icon {
       height: 4rem;
       width: 4rem;
       background-position: center;
       background-size: cover;
     }
-
     &__icon-1 {
       background-image: url(/img/facebook-icon.png);
     }

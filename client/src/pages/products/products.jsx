@@ -91,6 +91,15 @@ const Products = ({ location, setBasket, basket }) => {
 
   return (
     <div>
+      <div className="food">
+        <div className="food__container">
+          <div className="food__header">Grocery</div>
+          <div className="food__header-small">
+            Lorem ipsum dolor sit amedit quisquam laboriosam eos corporis, et
+            adipisci illo nam quidem molestias molestiae, recusandae quae.
+          </div>
+        </div>
+      </div>
       <div className="main">
         <div className="main__side-menu-container">
           <div className="main__side-menu-box">

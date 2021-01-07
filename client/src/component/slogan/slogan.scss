@@ -8,12 +8,23 @@
   background-repeat: no-repeat;
   background-position-y: -5rem;
   background-color: white;
-
+  @media (max-width: 48em) {
+    flex-direction: column;
+    padding: 0.5rem;
+  }
   &__content {
     display: inline-block;
     color: #e47b58;
     font-size: 1.5rem;
     letter-spacing: 0.8rem;
     margin: 0rem 3rem;
+    @media (max-width: 64em) {
+      font-size: 1.8rem;
+    }
+    @media (max-width: 48em) {
+      // margin: .5rem 1rem;
+      text-align: center;
+      font-size: 1.4rem;
+    }
   }
 }
