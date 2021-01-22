@@ -14,9 +14,13 @@ import Products from "./pages/products/products";
 import Checkout from "./pages/checkout/checkout";
 import Nav from "./component/nav/nav";
 import { useState } from "react";
+import Login from "./pages/login/login";
+import ProtectedRoute from "./component/protectedRoute";
+import Database from "./pages/database/database";
 
 function App() {
   const [basket, setBasket] = useState([]);
+  const [isLogin, setIsLogin] = useState(true);
   return (
     <div className="App">
       <Router>
@@ -42,6 +46,7 @@ function App() {
             path="/"
             render={() => <Home setBasket={setBasket} basket={basket} />}
           />
+          <Route path="/admin-credential" component={Login} />
           <Route
             path="/not-found"
             render={() => (
@@ -49,6 +54,18 @@ function App() {
                 <h1>Page not found</h1>
               </center>
             )}
+          />
+          <ProtectedRoute
+            path="/prod"
+            isLogin={isLogin}
+            Component={Products}
+            setBasket={setBasket}
+            basket={basket}
+          />
+          <ProtectedRoute
+            path="/add-item"
+            isLogin={isLogin}
+            Component={Database}
           />
           <Redirect to="/not-found" />
         </Switch>

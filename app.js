@@ -33,16 +33,18 @@ app.options("*", cors());
 
 app.use(express.static(path.join(__dirname, "client", "build")));
 
+// Body and Cookie Parser
+app.use(express.json({ limit: "10kb" }));
 app.use(cookieParser());
 
 // Set security HTTP headers
 app.use(helmet());
 
-// Data sanitization against NoSQL query injection
-app.use(mongoSanatize());
-
 // Data sanitization against XSS
 app.use(xss());
+
+// Data sanitization against NoSQL query injection
+app.use(mongoSanatize());
 
 app.use("/api/v1/email", emailRouter);
 app.use("/api/v1/product", productRouter);

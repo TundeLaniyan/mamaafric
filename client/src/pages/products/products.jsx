@@ -1,31 +1,58 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import queryString from "query-string";
-import data from "../../services/data.json";
+import Product from "../../component/product/product";
+import { getProducts } from "../../services/productService";
+import ReactSpinner from "react-loader-spinner";
 import "./products.scss";
 
 const Products = ({ location, setBasket, basket }) => {
-  const [products, setProducts] = useState(data.products);
+  const [products, setProducts] = useState([]);
   const [productsDisplay, setProductsDisplay] = useState([]);
   const [brands, setBrands] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [brandList, setBrandList] = useState([]);
+  const [categoryList, setCategoryList] = useState([]);
   const [brandLimit, setBrandLimit] = useState(5);
   const [price, setPrice] = useState(190);
   const [max, setMax] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
   const [sort, setSort] = useState({ direction: "ascending", name: "name" });
-  const { category, item } = queryString.parse(location.search);
+  const { category, type } = queryString.parse(location.search);
+  const categoryDescription = {
+    groceries:
+      "Food, Drinks, Spices & Seasoning, Snacks, Meat, Fish & poultry, Rices, Pastra & Flour, Fruit & Veg",
+    home: "Toiletries, kitchen accessory, household items, cleaning products",
+    "health and beauty": "Skin care, Make up, hair products, oral products",
+    offers: "Always check to see what fantastic offers we have available",
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      const data = await getProducts(location.search);
+      console.log(data);
+      setProducts(data);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, [location.search]);
 
   useEffect(() => {
     const brandList = [];
-    products.forEach(
-      (cur) =>
-        !brandList.includes(cur.brand) && cur.brand && brandList.push(cur.brand)
-    );
+    const categoryList = [];
+    products.forEach((cur) => {
+      !brandList.includes(cur.brand) && cur.brand && brandList.push(cur.brand);
+      !categoryList.includes(cur.category) &&
+        cur.category &&
+        categoryList.push(cur.category);
+    });
     setBrandList(brandList);
+    setCategoryList(categoryList);
     const max = Math.max(...products.map((cur) => cur.price));
-    const maxValue = max === -1 / 0 ? 0 : max;
+    const maxValue = Math.ceil(max === -1 / 0 ? 0 : max);
     setMax(maxValue);
     setPrice(maxValue);
+    setProductsDisplay(products);
   }, [products]);
 
   useEffect(() => {
@@ -44,31 +71,12 @@ const Products = ({ location, setBasket, basket }) => {
     setProductsDisplay(
       products.filter(
         (cur) =>
-          (brands.includes(cur.brand) || !brands.length) && price >= cur.price
+          (brands.includes(cur.brand) || !brands.length) &&
+          price >= cur.price &&
+          (categories.includes(cur.category) || !categories.length)
       )
     );
-  }, [brands, price]);
-
-  const Product = (props) => (
-    <div
-      className="goods__container"
-      style={{ width: "25%", margin: "1rem 4%" }}
-    >
-      <Link to={`/item/${props._id}`}>
-        <img className="goods__image" src={`/img/${props.img}`} alt="" />
-        <h5 className="goods__name">{props.name}</h5>
-        <h6 className="goods__price">£{props.price}</h6>
-      </Link>
-      <button
-        className="goods__add-basket-btn"
-        onClick={() => handleAddBasket(props)}
-      >
-        <div className="goods__add-basket-text" href="">
-          ADD TO BASKET
-        </div>
-      </button>
-    </div>
-  );
+  }, [brands, price, categories]);
 
   const handleBrandFilter = (brand) => {
     const current = [...brands];
@@ -78,91 +86,114 @@ const Products = ({ location, setBasket, basket }) => {
     setBrands(current);
   };
 
-  const handleAddBasket = (props) => {
-    const current = [...basket];
-    let index = -1;
-    current.forEach((cur, i) => {
-      if (cur._id === props._id) index = i;
-    });
-    if (index + 1) current[index].quantity++;
-    else current.push({ ...props, quantity: 1 });
-    setBasket(current);
+  const handleCategoryFilter = (category) => {
+    const current = [...categories];
+    const index = categories.indexOf(category);
+    if (index + 1) current.splice(index, index + 1);
+    else current.push(category);
+    setCategories(current);
   };
 
   return (
     <div>
-      <div className="food">
+      <div className={`food food--${category && category.replace(/\s/g, "")}`}>
         <div className="food__container">
-          <div className="food__header">Grocery</div>
+          <div className="food__header">
+            {(category && category.split(" ")[0]) || "products"}
+          </div>
           <div className="food__header-small">
-            Lorem ipsum dolor sit amedit quisquam laboriosam eos corporis, et
-            adipisci illo nam quidem molestias molestiae, recusandae quae.
+            {categoryDescription[category] || categoryDescription.offers}
           </div>
         </div>
       </div>
       <div className="main">
-        <div className="main__side-menu-container">
-          <div className="main__side-menu-box">
-            <div className="main__side-header">Product Categories</div>
-            <div className="main__category">
-              <ul className="main__category-item">
-                <li className="main__category__list">Food</li>
-                <li className="main__category__list">Food</li>
-                <li className="main__category__list">Food</li>
-                <li className="main__category__list">Food</li>
-                <li className="main__category__list">show more...</li>
-              </ul>
-            </div>
-            <div className="main__side-header">Filter by Brand</div>
-            <div className="main__brand">
-              <ul className="main__item">
-                {brandList.map((cur, i) => (
-                  <li
-                    key={i}
-                    className="main__brand__list"
-                    onClick={() => handleBrandFilter(cur)}
-                    style={
-                      brandLimit && i >= brandLimit
-                        ? { display: "none" }
-                        : brands.includes(cur)
-                        ? { color: "grey" }
-                        : null
-                    }
-                  >
-                    {cur}
-                  </li>
-                ))}
-                <li
-                  className="main__brand__list"
-                  onClick={() => setBrandLimit((prev) => (prev ? 0 : 5))}
-                >
-                  show {!brandLimit ? "less" : "more"}...
-                  <div className=""></div>
-                </li>
-              </ul>
-            </div>
-            <div className="main__side-header">Price</div>
-            <div className="slider">
-              <input
-                type="range"
-                value={price}
-                id="slide"
-                min={0}
-                max={max}
-                onChange={(e) => setPrice(e.target.value)}
-              />
-              <div className="slider__limit">
-                <div>£{0}</div>
-                <div>£{max}</div>
+        <label className="productslide__close" htmlFor="close1">
+          <div className="slidearrow">&#9207;</div>
+          <svg
+            className="filter-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="black"
+            width="48px"
+            height="48px"
+          >
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z" />
+          </svg>
+        </label>
+        <input type="checkbox" id="close1" className="close"></input>
+
+        <div className="big">
+          <div className="main__side-menu-container">
+            <div className="main__side-menu-box">
+              <div className="main__side-header">Product Categories</div>
+              <div className="main__category">
+                <ul className="main__category-item">
+                  {categoryList.map((cur, i) => (
+                    <li
+                      key={i}
+                      className="main__category__list"
+                      onClick={() => handleCategoryFilter(cur)}
+                      style={
+                        categoryList.includes(cur) ? { color: "grey" } : null
+                      }
+                    >
+                      {cur}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div className="slider__value">£{price}</div>
+              <div className="main__side-header">Filter by Brand</div>
+              <div className="main__brand">
+                <ul className="main__item">
+                  {brandList.map((cur, i) => (
+                    <li
+                      key={i}
+                      className="main__brand__list"
+                      onClick={() => handleBrandFilter(cur)}
+                      style={
+                        brandLimit && i >= brandLimit
+                          ? { display: "none" }
+                          : brands.includes(cur)
+                          ? { color: "grey" }
+                          : null
+                      }
+                    >
+                      {cur}
+                    </li>
+                  ))}
+                  <li
+                    className="main__brand__list"
+                    onClick={() => setBrandLimit((prev) => (prev ? 0 : 5))}
+                  >
+                    show {!brandLimit ? "less" : "more"}...
+                    <div className=""></div>
+                  </li>
+                </ul>
+              </div>
+              <div className="main__side-header">Price</div>
+              <div className="slider">
+                <input
+                  type="range"
+                  value={price}
+                  id="slide"
+                  min={0}
+                  max={max}
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+                <div className="slider__limit">
+                  <div>£{0}</div>
+                  <div>£{max}</div>
+                </div>
+                <div className="slider__value">£{price}</div>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="mainproduct">
           <div className="mainproduct__top">
-            <div className="mainproduct__header">Rice/Pasta</div>
+            <div className="mainproduct__header">{type || category}</div>
             <div className="mainproduct__sort-container">
               <span className="mainproduct__sort">Sort by:</span>
               {/* <div className="mainproduct__sort-box">Price</div> */}
@@ -198,9 +229,23 @@ const Products = ({ location, setBasket, basket }) => {
           </div>
 
           <div className="goods" style={{ flexWrap: "wrap" }}>
-            {productsDisplay.map((cur, i) => (
-              <Product key={i} {...cur} />
-            ))}
+            {isLoading ? (
+              <ReactSpinner
+                type="Circles"
+                color="#ffe7ba"
+                height={80}
+                width={80}
+              />
+            ) : (
+              productsDisplay.map((cur, i) => (
+                <Product
+                  key={i}
+                  basket={basket}
+                  setBasket={setBasket}
+                  {...cur}
+                />
+              ))
+            )}
           </div>
         </div>
       </div>

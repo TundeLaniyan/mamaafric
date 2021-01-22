@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import { joinMailList } from "../../services/emailServices";
 import "./footer.scss";
 
 const Footer = () => {
+  const [input, setInput] = useState("");
+  const [stopSubmit, setStopSubmit] = useState(false);
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    if (!stopSubmit) {
+      const response = await joinMailList(input);
+      console.log("response type", typeof response);
+      setInput(response);
+      setStopSubmit(true);
+    }
+  };
+
   return (
     <div>
       <div className="mail-list">
@@ -10,23 +23,25 @@ const Footer = () => {
           <p className="mail-list__para">
             Promotions, News products and sales directly yo your inbox
           </p>
-          <input
-            className="mail-list__input"
-            type="email address"
-            placeholder="Email"
-          />
-          <button className="mail-list__btn">
-            <a className="mail-list__btn-text" href="">
-              Subscribe
-            </a>
-          </button>
+          <form onSubmit={handleOnSubmit}>
+            <input
+              className="mail-list__input"
+              type="email"
+              placeholder="Email"
+              required={true}
+              value={input}
+              onChange={(e) => setInput(e.currentTarget.value)}
+            />
+            <button className="mail-list__btn">
+              <div className="mail-list__btn-text">Subscribe</div>
+            </button>
+          </form>
         </div>
       </div>
 
       <footer className="footer">
         <div className="footer__container">
           <img className="footer__logo" src="../img/logo2.png" alt="" />
-
           <div className="footer__box">
             <div className="footer__title">MamaAfric</div>
             <p className="footer__para">
@@ -34,7 +49,6 @@ const Footer = () => {
               food stuffs.
             </p>
           </div>
-
           <div className="footer__box">
             <div className="footer__title">Menu</div>
             <ul className="footer__list">
@@ -43,7 +57,6 @@ const Footer = () => {
               <li className="footer__text">Contact</li>
             </ul>
           </div>
-
           <div className="footer__box">
             <div className="footer__title">Help</div>
             <ul className="footer__list">
@@ -54,7 +67,6 @@ const Footer = () => {
               <li className="footer__text">Contact</li>
             </ul>
           </div>
-
           <div className="footer__box">
             <div className="footer__title">Have a Question</div>
             <ul className="footer__list">
@@ -71,11 +83,9 @@ const Footer = () => {
             <div className="footer__social__icon footer__social__icon-3"></div>
             <div className="footer__social__icon footer__social__icon-4"></div>
           </div>
-
           <div className="payment-method"></div>
         </div>
       </footer>
-
       <footer className="footer__small">
         Copyright © MamaAfric. All Rights Reserved.
       </footer>

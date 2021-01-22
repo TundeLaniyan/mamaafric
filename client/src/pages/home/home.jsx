@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { products } from "../../services/data.json";
+import { getRandomProducts } from "../../services/productService";
+import ReactSpinner from "react-loader-spinner";
 import "./home.scss";
 
 function Home({ setBasket, basket }) {
   const [randomProducts, setRandomProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleAddBasket = (props) => {
     const current = [...basket];
@@ -17,7 +19,15 @@ function Home({ setBasket, basket }) {
     setBasket(current);
   };
 
-  useEffect(() => setRandomProducts(products), []);
+  useEffect(() => {
+    const fetchData = async () => {
+      const current = await getRandomProducts(15);
+      setRandomProducts(current);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
+
   const Product = (props) => (
     <div className="products-container">
       <Link to={`/item/${props._id}`} className="hover">
@@ -27,7 +37,7 @@ function Home({ setBasket, basket }) {
           alt=""
         />
       </Link>
-      <img className="products-image" src={`/img/${props.img}`} alt="" />
+      <img className="products-image" src={`/img/${props.images}`} alt="" />
       <h5 className="products-name">{props.name}</h5>
       <h6 className="products-price">£{props.price}</h6>
       <button className="add-basket-btn" onClick={() => handleAddBasket(props)}>
@@ -90,9 +100,21 @@ function Home({ setBasket, basket }) {
         </div>
 
         <div className="products-slidder" id="one">
-          {randomProducts.slice(0, 5).map((cur, i) => (
-            <Product key={i} {...cur} />
-          ))}
+          {randomProducts
+            .slice(0, 5)
+            .map((cur, i) =>
+              isLoading ? (
+                <ReactSpinner
+                  key={i}
+                  type="Circles"
+                  color="#ffe7ba"
+                  height={80}
+                  width={80}
+                />
+              ) : (
+                <Product key={i} {...cur} />
+              )
+            )}
         </div>
       </section>
       <section className="latest-products">
@@ -103,9 +125,21 @@ function Home({ setBasket, basket }) {
           </h2>
         </div>
         <div className="products-slidder">
-          {randomProducts.slice(5, 10).map((cur, i) => (
-            <Product key={i} {...cur} />
-          ))}
+          {randomProducts
+            .slice(5, 10)
+            .map((cur, i) =>
+              isLoading ? (
+                <ReactSpinner
+                  key={i}
+                  type="Circles"
+                  color="#ffe7ba"
+                  height={80}
+                  width={80}
+                />
+              ) : (
+                <Product key={i} {...cur} />
+              )
+            )}
         </div>
       </section>
       <div className="banner-container">
@@ -122,9 +156,21 @@ function Home({ setBasket, basket }) {
         </div>
 
         <div className="products-slidder">
-          {randomProducts.slice(10, 15).map((cur, i) => (
-            <Product key={i} {...cur} />
-          ))}
+          {randomProducts
+            .slice(10, 15)
+            .map((cur, i) =>
+              isLoading ? (
+                <ReactSpinner
+                  key={i}
+                  type="Circles"
+                  color="#ffe7ba"
+                  height={80}
+                  width={80}
+                />
+              ) : (
+                <Product key={i} {...cur} />
+              )
+            )}
         </div>
       </section>
       <section className="category">
@@ -134,163 +180,112 @@ function Home({ setBasket, basket }) {
 
         <div className="category__container">
           <div className="category__box category__box-1">
-            <div className="category__text">Food</div>
             <button className="category__btn">
-              <a href="" className="category__btn-text">
+              <Link
+                to="/products?category=groceries&type=drinks"
+                className="category__btn-text"
+              >
                 shop now
-              </a>
+              </Link>
             </button>
           </div>
 
           <div className="category__box category__box-2">
-            <div className="category__text">Cosmetic</div>
             <button className="category__btn">
-              <a href="" className="category__btn-text">
+              <Link
+                to="/products?category=groceries&type=meat"
+                className="category__btn-text"
+              >
                 shop now
-              </a>
+              </Link>
             </button>
           </div>
 
           <div className="category__box category__box-3">
-            <div className="category__text">Drink</div>
             <button className="category__btn">
-              <a href="" className="category__btn-text">
+              <Link
+                to="/products?category=groceries&type=fruit"
+                className="category__btn-text"
+              >
                 shop now
-              </a>
+              </Link>
             </button>
           </div>
 
           <div className="category__box category__box-4">
-            <div className="category__text">Household</div>
             <button className="category__btn">
-              <a href="" className="category__btn-text">
+              <Link
+                to="/products?category=health%20and%20beauty&type=hair%20care"
+                className="category__btn-text"
+              >
                 shop now
-              </a>
+              </Link>
             </button>
           </div>
 
-          <div className="category__box category__box-1">
-            <div className="category__text">Food</div>
+          <div className="category__box category__box-5">
             <button className="category__btn">
-              <a href="" className="category__btn-text">
+              <Link
+                to="/products?category=home&type=mats"
+                className="category__btn-text"
+              >
                 shop now
-              </a>
+              </Link>
             </button>
           </div>
 
-          <div className="category__box category__box-2">
-            <div className="category__text">Cosmetic</div>
+          <div className="category__box category__box-6">
             <button className="category__btn">
-              <a href="" className="category__btn-text">
+              <Link
+                to="/products?category=health%20and%20beauty&type=oral%20care"
+                className="category__btn-text"
+              >
                 shop now
-              </a>
+              </Link>
             </button>
           </div>
 
-          <div className="category__box category__box-1">
-            <div className="category__text">Food</div>
+          <div className="category__box category__box-7">
             <button className="category__btn">
-              <a href="" className="category__btn-text">
+              <Link
+                to="/products?category=groceries&type=rice pasta flour"
+                className="category__btn-text"
+              >
                 shop now
-              </a>
+              </Link>
             </button>
           </div>
 
-          <div className="category__box category__box-2">
-            <div className="category__text">Cosmetic</div>
+          <div className="category__box category__box-8">
             <button className="category__btn">
-              <a href="" className="category__btn-text">
+              <Link
+                to="/products?category=health%20and%20beauty&type=skin%20care"
+                className="category__btn-text"
+              >
                 shop now
-              </a>
+              </Link>
             </button>
           </div>
 
-          <div className="category__box category__box-3">
-            <div className="category__text">Drink</div>
+          <div className="category__box category__box-9">
             <button className="category__btn">
-              <a href="" className="category__btn-text">
+              <Link
+                to="/products?category=groceries&type=snacks"
+                className="category__btn-text"
+              >
                 shop now
-              </a>
+              </Link>
             </button>
           </div>
 
-          <div className="category__box category__box-4">
-            <div className="category__text">Household</div>
+          <div className="category__box category__box-10">
             <button className="category__btn">
-              <a href="" className="category__btn-text">
+              <Link
+                to="/products?category=groceries&type=spices"
+                className="category__btn-text"
+              >
                 shop now
-              </a>
-            </button>
-          </div>
-
-          <div className="category__box category__box-1">
-            <div className="category__text">Food</div>
-            <button className="category__btn">
-              <a href="" className="category__btn-text">
-                shop now
-              </a>
-            </button>
-          </div>
-
-          <div className="category__box category__box-2">
-            <div className="category__text">Cosmetic</div>
-            <button className="category__btn">
-              <a href="" className="category__btn-text">
-                shop now
-              </a>
-            </button>
-          </div>
-          <div className="category__box category__box-4">
-            <div className="category__text">Household</div>
-            <button className="category__btn">
-              <a href="" className="category__btn-text">
-                shop now
-              </a>
-            </button>
-          </div>
-
-          <div className="category__box category__box-1">
-            <div className="category__text">Food</div>
-            <button className="category__btn">
-              <a href="" className="category__btn-text">
-                shop now
-              </a>
-            </button>
-          </div>
-
-          <div className="category__box category__box-2">
-            <div className="category__text">Cosmetic</div>
-            <button className="category__btn">
-              <a href="" className="category__btn-text">
-                shop now
-              </a>
-            </button>
-          </div>
-
-          <div className="category__box category__box-1">
-            <div className="category__text">Food</div>
-            <button className="category__btn">
-              <a href="" className="category__btn-text">
-                shop now
-              </a>
-            </button>
-          </div>
-
-          <div className="category__box category__box-2">
-            <div className="category__text">Cosmetic</div>
-            <button className="category__btn">
-              <a href="" className="category__btn-text">
-                shop now
-              </a>
-            </button>
-          </div>
-
-          <div className="category__box category__box-2">
-            <div className="category__text">Cosmetic</div>
-            <button className="category__btn">
-              <a href="" className="category__btn-text">
-                shop now
-              </a>
+              </Link>
             </button>
           </div>
         </div>

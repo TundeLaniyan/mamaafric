@@ -4,7 +4,7 @@ const sharp = require("sharp");
 const catchAsync = require("../utils/asyncFunctions");
 const AppError = require("../utils/appError");
 const shortid = require("shortid");
-const { keyword, shuffle } = require("../others/filter");
+const { manualSearch, shuffle } = require("../others/filter");
 const { percentageDiscount } = require("../others/percentage");
 
 const multer = require("multer");
@@ -29,7 +29,6 @@ const resizePhotos = catchAsync(async (req, res, next) => {
   if (!req.files) return next();
 
   req.body.images = [];
-
   await Promise.all(
     req.files.map(async (file, i) => {
       const filename = `products-${shortid()}-${Date.now()}-${i + 1}.jpeg`;
@@ -40,91 +39,25 @@ const resizePhotos = catchAsync(async (req, res, next) => {
         .jpeg({ quality: 90 });
       // .toFile(`./public/img/products/${filename}`);
       // await sharp(req.file.buffer).resize(500, 500).toFormat('jpeg').jpeg({ quality: 90 }).toFile(`./app/public/img/users/${req.file.filename}`)
-
       req.body.images.push(filename.toString());
     })
   );
-
   next();
-});
-
-const getProductsAllAdmin = catchAsync(async (req, res, next) => {
-  const features = new APIFeatures(
-    Product.find({ ...keyword(req.query.keyword) }),
-    req.query
-  )
-    .filter()
-    .sort()
-    .limitFields()
-    .pagination();
-
-  req.query.limit = 10;
-
-  const count = await Product.countDocuments({ ...keyword(req.query.keyword) });
-
-  const product = await features.query.select("-createdAt -updatedAt");
-
-  if (!product) {
-    return next(new AppError("those credentials were not found sorry :(", 404));
-  }
-
-  res.status(200).json({
-    status: "success",
-    pages: Math.ceil(count / req.query.limit),
-    // pageNumber: Number(req.query.page),
-    results: count,
-    data: {
-      product,
-    },
-  });
-});
-
-const getProductsAllAdminCount = catchAsync(async (req, res, next) => {
-  const product = await Product.countDocuments({
-    ...keyword(req.query.keyword),
-  });
-
-  res.status(200).json({
-    status: "success",
-    data: {
-      product,
-    },
-  });
 });
 
 // @desc    Fetch all products
 // @route   GET /api/products
 // @access  Public
 const getProducts = catchAsync(async (req, res, next) => {
-  req.query.limit = 10;
-
-  let filter = { ...keyword(req.query.keyword) };
-
-  const features = new APIFeatures(Product.find(filter), req.query)
-    .filter()
-    .sort()
-    .limitFields()
-    .pagination();
-
-  const count = await Product.countDocuments({ ...keyword(req.query.keyword) });
-
-  const product = await features.query.select("-owner");
-
-  if (!features.queryString.keyword)
-    return next(new AppError("Please put in a search term !!!!!", 400));
-
-  if (product.length === 0) {
-    return next(new AppError("those credentials were not found sorry :(", 404));
-  }
+  const { search } = req.query;
+  let filter = search ? manualSearch(req.query.search) : req.query;
+  const select = "-description -type";
+  const products = await Product.find(filter).select(select);
 
   res.status(200).json({
     status: "success",
-    pages: Math.ceil(count / req.query.limit),
-    // pageNumber: Number(req.query.page),
-    results: count,
-    data: {
-      product,
-    },
+    results: products.length,
+    data: { products },
   });
 });
 
@@ -236,84 +169,16 @@ const updateProduct = catchAsync(async (req, res, next) => {
   });
 });
 
-// @desc    Create new review
-// @route   POST /api/products/:id/reviews
-// @access  Private
-//  DONT USE THIS!!!
-const createProductReview = catchAsync(async (req, res, next) => {
-  const { rating, comment } = req.body;
-
-  const product = await Product.findById(req.params.id);
-
-  if (product) {
-    const alreadyReviewed = product.reviews.find(
-      (r) => r.user.toString() === req.user._id.toString()
-    );
-
-    if (alreadyReviewed) {
-      res.status(400);
-      throw new Error("Product already reviewed");
-    }
-
-    const review = {
-      name: req.user.name,
-      rating: Number(rating),
-      comment,
-      user: req.user._id,
-    };
-
-    product.reviews.unshift(review);
-
-    product.numReviews = product.reviews.length;
-
-    product.rating =
-      product.reviews.reduce((acc, item) => item.rating + acc, 0) /
-      product.reviews.length;
-
-    await product.save();
-    res.status(201).json({ message: "Review added" });
-  } else {
-    res.status(404);
-    throw new Error("Product not found");
-  }
-});
-
-// @desc    Get top rated products
-// @route   GET /api/products/top
-// @access  Public
-const getTop5Products = catchAsync(async (req, res) => {
-  const products = await Product.find({}).sort({ rating: -1 }).limit(5);
-  //  theres no ratings so dont use this yet
-  res.status(200).json({
-    status: "success",
-    data: {
-      product,
-    },
-  });
-});
-
-const get15randomProducts = catchAsync(async (req, res) => {
-  // biscuift9033s1
-  const random = Math.floor(Math.random());
-  const products = await Product.find({}).limit(15);
+const randomProducts = catchAsync(async (req, res) => {
+  const limit = req.query.limit || 3;
+  const products = shuffle(
+    await Product.find({}).select("-description -category -type")
+  );
+  products.length = limit;
 
   res.status(200).json({
     status: "success",
-    results: products.length,
-    data: {
-      products: shuffle(products),
-    },
-  });
-});
-
-const resetAll = catchAsync(async (req, res, next) => {
-  await Product.deleteMany();
-
-  res.status(205).json({
-    status: "success",
-    data: {
-      message: "Deleted Successfully",
-    },
+    data: { products },
   });
 });
 
@@ -359,16 +224,11 @@ const discount = catchAsync(async (req, res, next) => {
 
 module.exports = {
   getProducts,
-  getProductsAllAdmin,
-  getProductsAllAdminCount,
   getProductById,
   deleteProduct,
   createProduct,
   updateProduct,
-  createProductReview,
-  resetAll,
-  getTop5Products,
-  get15randomProducts,
+  randomProducts,
   uploadProducts,
   resizePhotos,
   discount,

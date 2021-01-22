@@ -9,15 +9,14 @@ const emailSchema = mongoose.Schema(
       trim: true,
       lowercase: true,
       validate: [validator.isEmail, "Please provide a valid email address"],
+      unique: true,
     },
   },
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
 const Email = mongoose.model("Email", emailSchema);

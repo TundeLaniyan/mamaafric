@@ -2,7 +2,7 @@ const { connect } = require("mongoose");
 
 const dataBaseConnection = async () => {
   const DB =
-    process.env.NODE_ENV === "prodiction"
+    process.env.NODE_ENV === "production"
       ? process.env.DATABASE
       : process.env.DATABASE_TEST;
   try {

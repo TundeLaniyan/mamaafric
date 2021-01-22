@@ -1,0 +1,32 @@
+.database {
+  form {
+    margin: 5rem auto;
+    width: 50%;
+    background-color: rgb(241, 215, 180);
+    padding: 5rem;
+    text-align: center;
+    border-radius: 5px;
+  }
+  div {
+    display: flex;
+    margin: 2rem 0;
+  }
+  label {
+    flex: 0 0 25%;
+    font-size: 1.6rem;
+  }
+  input {
+    flex: 0 0 75%;
+  }
+  &__submit {
+    padding: 1.25rem 3.2rem;
+    outline: none;
+    color: white;
+    background-color: #ff0800;
+    border: none;
+    box-shadow: 0 0.3rem 0.9rem -0.5rem rgba(0, 0, 0, 0.493);
+    border-radius: 0.4rem;
+    transition: 0.3s ease;
+    cursor: pointer;
+  }
+}

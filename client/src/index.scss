@@ -9,17 +9,31 @@
 html {
   font-size: 62.5%;
   @media (max-width: 75em) {
-    font-size: 56.25%;
+    ////1200
+    font-size: 55%;
+  }
+  @media (max-width: 64em) {
+    /////1024
+    font-size: 51%;
   }
   @media (max-width: 56.25em) {
-    font-size: 50%;
+    /////900
+    font-size: 46%;
   }
   @media (max-width: 37.5em) {
-    font-size: 43.75%;
+    /////768
+    font-size: 45%;
   }
-  @media (max-width: 28.125em) {
-    font-size: 37.5%;
+  // @media (max-width: 37.5em) {/////600
+  //   font-size: 38%;
+  // }
+  @media (max-width: 26.75em) {
+    ////428
+    font-size: 40%;
   }
+  // @media (max-width: 28.125em) {
+  //   font-size: 38.5%;
+  // }
 }
 
 body {
@@ -31,7 +45,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
   font-family: "Heebo", sans-serif;
-
   background-color: rgb(255, 248, 234);
   font-family: "Heebo", sans-serif;
   color: rgba(0, 0, 0, 0.735);
@@ -39,8 +52,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 120%;
-
-  @media (max-width: 550px) {
+  @media (max-width: 75em) {
     background-size: cover;
     background-position-y: -10rem;
   }
@@ -61,4 +73,8 @@ button:active {
   transform: scale(0.97);
   border: none;
   outline: none;
+}
+
+h6 {
+  color: #fea808;
 }
