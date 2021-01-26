@@ -3,7 +3,7 @@ const { connect } = require("mongoose");
 require("colors");
 require("dotenv").config();
 
-connect(process.env.DATABASE_TEST, {
+connect(process.env.DATABASE_LOCAL, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,

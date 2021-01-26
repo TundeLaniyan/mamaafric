@@ -4,7 +4,7 @@ const dataBaseConnection = async () => {
   const DB =
     process.env.NODE_ENV === "production"
       ? process.env.DATABASE
-      : process.env.DATABASE_TEST;
+      : process.env.DATABASE_LOCAL;
   try {
     const conn = await connect(DB, {
       useNewUrlParser: true,
