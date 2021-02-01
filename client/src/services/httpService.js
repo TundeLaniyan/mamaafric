@@ -1,17 +1,19 @@
-// import axios from "axios";
+import axios from "axios";
 import { toast } from "react-toastify";
-// fetch.defaults.withCredentials = true;
-// fetch.interceptors.response.use(null, (err) => {
-//   if (err.response && err.response.status > 500) {
-//     toast.error("An unexpected error occurrred.");
-//   }
+axios.defaults.withCredentials = true;
+axios.interceptors.response.use(null, (err) => {
+  if (err.response && err.response.status > 500) {
+    toast.error("An unexpected error occurrred.");
+  }
 
-//   return Promise.reject(err);
-// });
+  return Promise.reject(err);
+});
 
 async function postData(url = "", data = {}) {
   const response = await fetch(url, {
     method: "POST",
+    credentials: "include",
+    // mode: "no-cors",
     headers: {
       "Content-Type": "application/json",
     },
@@ -21,8 +23,8 @@ async function postData(url = "", data = {}) {
 }
 
 export default {
-  get: fetch.get,
-  post: postData,
-  patch: fetch.patch,
+  get: axios.get,
+  post: axios.post,
+  patch: axios.patch,
   delete: fetch.delete,
 };

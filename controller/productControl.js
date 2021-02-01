@@ -5,35 +5,22 @@ const AppError = require("../utils/appError");
 const { manualSearch, shuffle } = require("../others/filter");
 const { percentageDiscount } = require("../others/percentage");
 
-// @desc    Fetch all products
-// @route   GET /api/products
-// @access  Public
 const getProducts = catchAsync(async (req, res, next) => {
   const { search } = req.query;
   let filter = search ? manualSearch(req.query.search) : req.query;
   const select = "-description -type";
   const products = await Product.find(filter).select(select);
 
-  res.status(200).json({
-    status: "success",
-    results: products.length,
-    data: { products },
-  });
+  res
+    .status(200)
+    .json({ status: "success", results: products.length, products });
 });
 
-// @desc    Fetch single product
-// @route   GET /api/products/:id
-// @access  Public
 const getProductById = catchAsync(async (req, res) => {
   const product = await Product.findById(req.params.id);
 
   if (product) {
-    res.status(201).json({
-      status: "success",
-      data: {
-        product,
-      },
-    });
+    res.status(201).json({ status: "success", product });
   } else {
     return next(new AppError("Product not found", 404));
   }
@@ -46,10 +33,7 @@ const randomProducts = catchAsync(async (req, res) => {
   );
   products.length = limit;
 
-  res.status(200).json({
-    status: "success",
-    data: { products },
-  });
+  res.status(200).json({ status: "success", products });
 });
 
 const discount = catchAsync(async (req, res, next) => {

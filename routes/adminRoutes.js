@@ -1,20 +1,24 @@
 const express = require("express");
 const {
-  getProductsAllAdmin,
   createProduct,
   updateProduct,
   deleteProduct,
   uploadProducts,
   resizePhotos,
-  discount,
-} = require("../controller/productControl");
+} = require("../controller/adminControl");
 const { protect, restrictTo } = require("../controller/authControl");
 
 const router = express.Router();
+router.use(function (req, res, next) {
+  console.log(2002);
+  next();
+});
 router.use(protect, restrictTo("admin"));
+router.use(function (req, res, next) {
+  console.log(3003);
+  next();
+});
 router.route("/").post(uploadProducts, resizePhotos, createProduct);
-router.route("/getall").get(getProductsAllAdmin);
-// router.route("/discount/:id").post(discount);
 
 router
   .route("/:id")

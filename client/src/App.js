@@ -5,25 +5,38 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import Header from "./component/header/header";
-import Slogan from "./component/slogan/slogan";
+import AdminPanel from "./component/adminPanel/adminPanel";
+import Checkout from "./pages/checkout/checkout";
+import Database from "./pages/database/database";
 import Footer from "./component/footer/footer";
+import Header from "./component/header/header";
 import Home from "./pages/home/home";
 import Item from "./pages/item/item";
-import Products from "./pages/products/products";
-import Checkout from "./pages/checkout/checkout";
-import Nav from "./component/nav/nav";
-import { useState } from "react";
 import Login from "./pages/login/login";
+import Nav from "./component/nav/nav";
+import Products from "./pages/products/products";
 import ProtectedRoute from "./component/protectedRoute";
-import Database from "./pages/database/database";
+import Slogan from "./component/slogan/slogan";
+import { useEffect, useState } from "react";
+import { checkLoggedIn } from "./services/adminService";
+import AdminItem from "./pages/adminItem/adminItem";
 
 function App() {
   const [basket, setBasket] = useState([]);
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await checkLoggedIn();
+      setIsLogin(response);
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="App">
       <Router>
+        {isLogin && <AdminPanel />}
         <Header basket={basket} setBasket={setBasket} />
         <Slogan />
         <Nav />
@@ -63,9 +76,14 @@ function App() {
             basket={basket}
           />
           <ProtectedRoute
-            path="/add-item"
+            path="/admin-panel/item/:_id"
             isLogin={isLogin}
             Component={Database}
+          />
+          <ProtectedRoute
+            path="/admin-panel/items"
+            isLogin={isLogin}
+            Component={AdminItem}
           />
           <Redirect to="/not-found" />
         </Switch>

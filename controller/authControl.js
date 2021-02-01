@@ -5,7 +5,7 @@ const AppError = require("../utils/appError");
 const { Email, sendEmail } = require("../utils/email");
 
 const user = {
-  _id: Date.now(),
+  _id: 1611766224330,
   name: "Issac Fayose",
   role: "admin",
   email: "mamaafric2020@gmail.com",
@@ -26,7 +26,7 @@ const signRefreshToken = (id) => {
 const createSendAccessToken = (user, statusCode, req, res) => {
   const token = signAccessToken(user._id);
 
-  const cookieOPtion = {
+  const cookieOption = {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
@@ -34,35 +34,29 @@ const createSendAccessToken = (user, statusCode, req, res) => {
     httpOnly: true,
   };
   // if (req.secure || req.headers["x-forwarded-proto"] === "https")
-  //   cookieOPtion.secure = true;
-  if (process.env.NODE_ENV === "production") cookieOPtion.secure = true;
+  //   cookieOption.secure = true;
+  if (process.env.NODE_ENV === "production") cookieOption.secure = true;
 
-  res.cookie("jwt", token, cookieOPtion);
+  res.cookie("jwt", token, cookieOption);
 
-  res.status(statusCode).json({
-    status: "success",
-    token,
-    data: {
-      user,
-    },
-  });
+  res.status(statusCode).json({ status: "success", token, user });
 };
 
 const logIn = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
-  if ((!email, !password))
+  if (!email || !password)
     return next(new AppError("Please provide email and password", 401));
 
-  if (email !== user.email && password !== user.password)
-    return next(new AppError("unable to authorize this login", 401));
+  if (email !== user.email || password !== user.password)
+    return next(new AppError("Invalid email or password", 401));
 
   createSendAccessToken(user, 200, req, res);
 });
 
 const logOut = async (req, res, next) => {
   res.cookie("jwt", "loggedout", {
-    expires: new Date(Date.now() + 10 * 1000),
+    expires: new Date(Date.now() + 1000),
     httpOnly: true,
   });
 
@@ -70,32 +64,33 @@ const logOut = async (req, res, next) => {
 };
 
 const protect = catchAsync(async (req, res, next) => {
+  console.log(0);
+  console.log(req.headers.authorization);
+  console.log(req.cookies.jwt);
+  console.log(req.headers);
+  console.log({ list: req.cookies });
   let token;
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
   ) {
     token = req.headers.authorization.split(" ")[1];
-  }
-
-  if (req.cookies.jwt) {
+  } else if (req.cookies.jwt) {
     token = req.cookies.jwt;
-  }
-
-  if (!token)
+  } else
     return next(
       new AppError("You are not logged in! Please log in to get access.", 401)
     );
-
+  console.log(1);
   // 2) Verification token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-
+  console.log(2);
   // 3) Check if user exists
-  if (user._id === decoded.id)
+  if (!decoded || decoded.id !== user._id)
     return next(
       new AppError("The user belonging to this token does not exist.", 401)
     );
-
+  console.log(3);
   // GRANT ACCESS TO PROTECTED ROUTE
   req.user = user;
   res.locals.user = user;
@@ -111,17 +106,17 @@ const isLoggedIn = async (req, res, next) => {
     );
 
     // 3) Check if user exists
-    if (user._id === decoded.id)
+    if (!decoded || decoded.id !== user._id)
       return next(
-        new AppError("The user belonging to this token does not exist.", 401)
+        new AppError("You are not logged in! Please log in to get access.", 401)
       );
-
-    req.user = user;
-    res.locals.user = req.user;
-    return next();
+    console.log("success");
+    return res.status(200).json({ status: "success" });
   }
 
-  next();
+  return next(
+    new AppError("You are not logged in! Please log in to get access.", 401)
+  );
 };
 
 const restrictTo = (...roles) => {

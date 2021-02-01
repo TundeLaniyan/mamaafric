@@ -1,0 +1,15 @@
+.admin-item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .products-container {
+    margin: 4rem;
+  }
+  .products-btn {
+    display: flex;
+    justify-content: space-between;
+    button {
+      flex: 0 0 40%;
+    }
+  }
+}
