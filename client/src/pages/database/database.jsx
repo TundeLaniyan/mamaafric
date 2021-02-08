@@ -56,7 +56,6 @@ const Database = ({ match }) => {
     const current = { ...product };
     current[id] = id === "image" ? files : value;
     setProduct(current);
-    alert(value);
   };
 
   return (
@@ -88,8 +87,8 @@ const Database = ({ match }) => {
             {[
               "vegetables & ethnic foods",
               "health & beauty",
-              "accessories and antiques",
-              "offers",
+              "accessories & antiques",
+              "drinks & beverages",
             ].map((val) => (
               <option key={val} value={val}>
                 {val}

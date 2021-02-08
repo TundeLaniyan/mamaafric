@@ -136,8 +136,11 @@ const Nav = () => {
         >
           <li>Drinks & beverages</li>
         </Link>
-        <Link to="/products?category=offers" className="smallnav__link tittle">
-          <li>OFFERS</li>
+        <Link
+          to="/products?category=accessories & antiques"
+          className="smallnav__link tittle"
+        >
+          <li>accessories & antiques</li>
         </Link>
       </ul>
     </div>

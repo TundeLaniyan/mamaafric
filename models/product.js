@@ -24,7 +24,7 @@ const productSchema = mongoose.Schema(
             "vegetables & ethnic foods",
             "frozen vegetables",
             "drinks & beverages",
-            "offers",
+            "accessories & antiques",
           ].includes(value),
         message:
           "Category must be one of these option: vegetables & ethnic foods, frozen vegetables, drinks & beverages or offers",
