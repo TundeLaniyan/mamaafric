@@ -22,12 +22,12 @@ const productSchema = mongoose.Schema(
         validator: (value) =>
           [
             "vegetables & ethnic foods",
-            "frozen vegetables",
+            "health & beauty",
             "drinks & beverages",
             "accessories & antiques",
           ].includes(value),
         message:
-          "Category must be one of these option: vegetables & ethnic foods, frozen vegetables, drinks & beverages or offers",
+          "Category must be one of these option: vegetables & ethnic foods, health & beauty, drinks & beverages or accessories & antiques",
       },
     },
     type: {
