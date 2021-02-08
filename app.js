@@ -17,6 +17,43 @@ const adminRouter = require("./routes/adminRoutes");
 
 const app = express();
 
+// Restrict access to https only
+app.use((req, res, next) => {
+  if (
+    [
+      "127.0.0.1:3000",
+      "localhost:3000",
+      "127.0.0.1:7008",
+      "localhost:7008",
+    ].includes(req.headers.host)
+  ) {
+    // Website you wish to allow to connect
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    // Request methods you wish to allow
+    res.setHeader(
+      "Access-Control-Allow-Methods",
+      "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+    );
+    // Request headers you wish to allow
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "X-Requested-With, Content-Type"
+    );
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader("Access-Control-Allow-Credentials", true);
+
+    // Pass to next layer of middleware
+    return next();
+  }
+  if (
+    process.env.NODE_ENV === "production" &&
+    req.headers["x-forwarded-proto"] !== "https"
+  )
+    return res.redirect("https://" + req.headers.host + req.url);
+  return next();
+});
+
 // Compress files to gzip
 app.use(compression());
 
@@ -28,36 +65,10 @@ const limiter = rateLimit({
 });
 app.use("/api", limiter);
 
-// app.use("*", (req, res) =>
-//   res.header("Access-Control-Allow-Origin", "http://localhost:3000/")
-// );
-
 // app.use(cors("http://localhost:3000"));
 // app.use(cors());
 
 // app.options("*", cors());
-
-// REMOVE THIS
-app.use(function (req, res, next) {
-  // Website you wish to allow to connect
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-  // Request methods you wish to allow
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-  // Request headers you wish to allow
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "X-Requested-With, Content-Type"
-  );
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader("Access-Control-Allow-Credentials", true);
-
-  // Pass to next layer of middleware
-  next();
-});
 
 app.use(express.static(path.join(__dirname, "client", "build")));
 

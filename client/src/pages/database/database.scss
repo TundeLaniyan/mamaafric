@@ -15,8 +15,10 @@
     flex: 0 0 25%;
     font-size: 1.6rem;
   }
-  input {
+  input,
+  select {
     flex: 0 0 75%;
+    padding: 0 0.5rem;
   }
   &__submit {
     padding: 1.25rem 3.2rem;

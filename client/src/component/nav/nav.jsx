@@ -64,123 +64,79 @@ const Nav = () => {
             </li>
           </ul>
         </li> */}
-        <li className="smallnav__list">
-          GROCERIES
+        <li className="smallnav__list tittle">
+          vegetables & ethnic foods
           <ul className="smallnav__droplist">
             <li className="smallnav__item">
               <Link
-                to="/products?category=groceries&type=food"
+                to="/products?category=vegetables & ethnic foods&type=frozen vegetables"
                 className="smallnav__link"
               >
-                food
+                frozen vegetables
               </Link>
             </li>
             <li className="smallnav__item">
               <Link
-                to="/products?category=groceries&type=drink"
+                to="/products?category=vegetables & ethnic foods&type=vegetables"
                 className="smallnav__link"
               >
-                drink
+                vegetables
               </Link>
             </li>
             <li className="smallnav__item">
               <Link
-                to="/products?category=groceries&type=spices"
+                to="/products?category=vegetables & ethnic foods&type=ethnic foods"
                 className="smallnav__link"
               >
-                spices & seasoning
-              </Link>
-            </li>
-            <li className="smallnav__item">
-              <Link
-                to="/products?category=groceries&type=snacks"
-                className="smallnav__link"
-              >
-                snacks
-              </Link>
-            </li>
-            <li className="smallnav__item">
-              <Link
-                to="/products?category=groceries&type=meat"
-                className="smallnav__link"
-              >
-                meat, fish & poultry
-              </Link>
-            </li>
-            <li className="smallnav__item">
-              <Link
-                to="/products?category=groceries&type=rice pasta flour"
-                className="smallnav__link"
-              >
-                rice, pasta, flour
-              </Link>
-            </li>
-            <li className="smallnav__item">
-              <Link
-                to="/products?category=groceries&type=fruit"
-                className="smallnav__link"
-              >
-                fruit & veg
+                ethnic foods
               </Link>
             </li>
           </ul>
         </li>
-        <li className="smallnav__list">
-          HOME PRODUCTS
+        <li className="smallnav__list tittle">
+          health & beauty
           <ul className="smallnav__droplist">
             <li className="smallnav__item">
-              <Link to="/products?category=home" className="smallnav__link">
-                household items
+              <Link
+                to="/products?category=health & beauty&type=haircare"
+                className="smallnav__link"
+              >
+                haircare
               </Link>
             </li>
             <li className="smallnav__item">
               <Link
-                to="/products?category=home&type=mats"
+                to="/products?category=health & beauty&type=oral cale"
                 className="smallnav__link"
               >
-                mats
+                Oral care
               </Link>
             </li>
             <li className="smallnav__item">
               <Link
-                to="/products?category=home&type=jug"
+                to="/products?category=health & beauty&type=skincare"
                 className="smallnav__link"
               >
-                Jugs
+                skincare
+              </Link>
+            </li>
+            <li className="smallnav__item">
+              <Link
+                to="/products?category=health & beauty&type=wellbeing adults"
+                className="smallnav__link"
+              >
+                wellbeing adults
               </Link>
             </li>
           </ul>
         </li>
-        <li className="smallnav__list">
-          HEALTH & BEAUTY
-          <ul className="smallnav__droplist">
-            <li className="smallnav__item">
-              <Link
-                to="/products?category=health and beauty&type=skin care"
-                className="smallnav__link"
-              >
-                skin care
-              </Link>
-            </li>
-            <li className="smallnav__item">
-              <Link
-                to="/products?category=health and beauty&type=hair care"
-                className="smallnav__link"
-              >
-                hair care
-              </Link>
-            </li>
-            <li className="smallnav__item">
-              <Link
-                to="/products?category=health and beauty&type=oral care"
-                className="smallnav__link"
-              >
-                oral care
-              </Link>
-            </li>
-          </ul>
-        </li>
-        <Link to="/products?category=offers" className="smallnav__link">
+        <Link
+          to="/products?category=drinks & beverages"
+          className="smallnav__link tittle"
+        >
+          <li>Drinks & beverages</li>
+        </Link>
+        <Link to="/products?category=offers" className="smallnav__link tittle">
           <li>OFFERS</li>
         </Link>
       </ul>

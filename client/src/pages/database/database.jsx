@@ -56,6 +56,7 @@ const Database = ({ match }) => {
     const current = { ...product };
     current[id] = id === "image" ? files : value;
     setProduct(current);
+    alert(value);
   };
 
   return (
@@ -77,12 +78,24 @@ const Database = ({ match }) => {
         </div>
         <div>
           <label htmlFor="category">Category</label>
-          <input
+          <select
             id="category"
             required
             value={product.category}
             onChange={handleOnChange}
-          />
+          >
+            <option></option>
+            {[
+              "vegetables & ethnic foods",
+              "health & beauty",
+              "accessories and antiques",
+              "offers",
+            ].map((val) => (
+              <option key={val} value={val}>
+                {val}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <label htmlFor="type">Type</label>
