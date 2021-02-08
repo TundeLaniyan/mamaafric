@@ -33,7 +33,7 @@ const Header = ({ basket, setBasket }) => {
           <ul className="navigation__list">
             <li>
               <label
-                className="navigation__links Home-Products"
+                className="navigation__links navigation__tittle"
                 htmlFor="checkbox2"
               >
                 Vegetables & ethnic foods
@@ -72,7 +72,10 @@ const Header = ({ basket, setBasket }) => {
               </ul>
             </li>
             <li>
-              <label className="navigation__links Health" htmlFor="checkbox3">
+              <label
+                className="navigation__links navigation__tittle"
+                htmlFor="checkbox3"
+              >
                 Health & beauty<span>&#11206;</span>
               </label>
               <input
@@ -116,17 +119,19 @@ const Header = ({ basket, setBasket }) => {
               </ul>
             </li>
             <li>
-              <Link to="/products?category=drinks & beverages">
-                <label className="navigation__links Health" htmlFor="checkbox3">
-                  Drinks & beverages
-                </label>
+              <Link
+                to="/products?category=drinks & beverages"
+                className="navigation__links navigation__tittle"
+              >
+                Drinks & beverages
               </Link>
             </li>
             <li>
-              <Link to="/products?category=accessories & antiques">
-                <label className="navigation__links Health" htmlFor="checkbox3">
-                  Accessories & antiques
-                </label>
+              <Link
+                to="/products?category=accessories & antiques"
+                className="navigation__links navigation__tittle"
+              >
+                Accessories & antiques
               </Link>
             </li>
           </ul>
