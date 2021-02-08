@@ -9,12 +9,12 @@ const Database = ({ match }) => {
   const [pending, setPending] = useState(false);
   const [status, setStatus] = useState("");
   const [product, setProduct] = useState({
-    name: "Test",
+    name: "",
     brand: "",
-    category: "groceries",
-    type: "food",
-    description: "This is a test",
-    price: 50,
+    category: "",
+    type: "",
+    description: "",
+    price: 0,
     image: {},
   });
 

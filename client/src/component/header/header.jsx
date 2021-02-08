@@ -18,7 +18,6 @@ const Header = ({ basket, setBasket }) => {
       <Link to="/">
         <img className="logo" src="/img/logo1.png" alt="" />
       </Link>
-
       <div className="navigation">
         <input
           type="checkbox"
@@ -28,30 +27,16 @@ const Header = ({ basket, setBasket }) => {
         <label htmlFor="navi-toggle" className="navigation__button">
           <div className="navigation__icon">&nbsp;</div>
         </label>
-
         <div className="navigation__background"></div>
-
         <nav className="navigation__nav">
           <img src="/img/logo1.png" alt="" className="navigation__logo" />
-
           <ul className="navigation__list">
-            {/* <li><label className="navigation__links " htmlFor="checkbox1">
-              Category<span>&#11206;</span></label>
-              <input type="checkbox" className="navigation__checkbox" id="checkbox1" />
-              <ul className="navigation__droplist navigation__droplist-1">
-                <li className="navigation__droplinks">food</li>
-                <li className="navigation__droplinks">drink</li>
-                <li className="navigation__droplinks">snacks</li>
-                <li className="navigation__droplinks">rice,pasta</li>
-                <li className="navigation__droplinks">meat</li>
-              </ul>
-            </li> */}
             <li>
               <label
                 className="navigation__links Home-Products"
                 htmlFor="checkbox2"
               >
-                Groceries
+                Vegetables & ethnic foods
                 <span>&#11206;</span>
               </label>
               <input
@@ -61,40 +46,34 @@ const Header = ({ basket, setBasket }) => {
               />
               <ul className="navigation__droplist navigation__droplist-2">
                 <li>
-                  <Link className="navigation__droplinks" to="">
-                    Food
+                  <Link
+                    className="navigation__droplinks"
+                    to="/products?category=vegetables & ethnic foods&type=frozen vegetables"
+                  >
+                    Frozen vegetables
                   </Link>
                 </li>
                 <li>
-                  <Link className="navigation__droplinks" to="">
-                    Drinks
+                  <Link
+                    className="navigation__droplinks"
+                    to="/products?category=vegetables & ethnic foods&type=vegetables"
+                  >
+                    Vegetables
                   </Link>
                 </li>
                 <li>
-                  <Link className="navigation__droplinks" to="">
-                    Snack
-                  </Link>
-                </li>
-                <li>
-                  <Link className="navigation__droplinks" to="">
-                    Meat,Fish & Poultry
-                  </Link>
-                </li>
-                <li>
-                  <Link className="navigation__droplinks" to="">
-                    Rice , Pasta & Flour
-                  </Link>
-                </li>
-                <li>
-                  <Link className="navigation__droplinks" to="">
-                    Fruit & Veg{" "}
+                  <Link
+                    className="navigation__droplinks"
+                    to="/products?category=vegetables & ethnic foods&type=ethnic foods"
+                  >
+                    Ethnic foods
                   </Link>
                 </li>
               </ul>
             </li>
             <li>
               <label className="navigation__links Health" htmlFor="checkbox3">
-                Home Products<span>&#11206;</span>
+                Health & beauty<span>&#11206;</span>
               </label>
               <input
                 type="checkbox"
@@ -103,53 +82,52 @@ const Header = ({ basket, setBasket }) => {
               />
               <ul className="navigation__droplist navigation__droplist-3">
                 <li>
-                  <Link className="navigation__droplinks" to="">
-                    Household items
+                  <Link
+                    className="navigation__droplinks"
+                    to="/products?category=health & beauty&type=haircare"
+                  >
+                    Haircare
                   </Link>
                 </li>
                 <li>
-                  <Link className="navigation__droplinks" to="">
-                    Mugs
-                  </Link>
-                </li>
-                <li>
-                  <Link className="navigation__droplinks" to="">
-                    JugsJugs
-                  </Link>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <label className="navigation__links Health" htmlFor="checkbox4">
-                Health & Beauty<span>&#11206;</span>
-              </label>
-              <input
-                type="checkbox"
-                className="navigation__checkbox"
-                id="checkbox4"
-              />
-              <ul className="navigation__droplist navigation__droplist-4">
-                <li>
-                  <Link className="navigation__droplinks" to="">
-                    Skin care
-                  </Link>
-                </li>
-                <li>
-                  <Link className="navigation__droplinks" to="">
-                    Hair care
-                  </Link>
-                </li>
-                <li>
-                  <Link className="navigation__droplinks" to="">
+                  <Link
+                    className="navigation__droplinks"
+                    to="/products?category=health & beauty&type=oral cale"
+                  >
                     Oral care
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    className="navigation__droplinks"
+                    to="/products?category=health & beauty&type=skincare"
+                  >
+                    Skincare
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="navigation__droplinks"
+                    to="/products?category=health & beauty&type=wellbeing adults"
+                  >
+                    Wellbeing adults
+                  </Link>
+                </li>
               </ul>
             </li>
             <li>
-              <label className="navigation__links Health" htmlFor="checkbox3">
-                Offer
-              </label>
+              <Link to="/products?category=drinks & beverages">
+                <label className="navigation__links Health" htmlFor="checkbox3">
+                  Drinks & beverages
+                </label>
+              </Link>
+            </li>
+            <li>
+              <Link to="/products?category=accessories & antiques">
+                <label className="navigation__links Health" htmlFor="checkbox3">
+                  Accessories & antiques
+                </label>
+              </Link>
             </li>
           </ul>
           <div className="navi">
