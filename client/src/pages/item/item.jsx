@@ -58,7 +58,12 @@ const Item = ({ match, history, setBasket, basket }) => {
                 width={"100%"}
               />
             ) : (
-              <img src={`/img/${item.image}`} alt="" className="item__img" />
+              <img
+                src={`/img/${item.image}`}
+                alt=""
+                className="item__img"
+                onError={(e) => (e.target.src = "/img/logo1.png")}
+              />
             )}
 
             <div className="item__box">
@@ -224,6 +229,7 @@ const Item = ({ match, history, setBasket, basket }) => {
                   <img
                     className="products-image"
                     src={`/img/${cur.image}`}
+                    onError={(e) => (e.target.src = "/img/logo1.png")}
                     alt=""
                   />
                   <h5 className="products-name">{cur.name}</h5>

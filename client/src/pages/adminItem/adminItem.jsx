@@ -37,7 +37,12 @@ const AdminItem = () => {
               alt=""
             />
           </Link>
-          <img className="products-image" src={`/img/${cur.image}`} alt="" />
+          <img
+            className="products-image"
+            src={`/img/${cur.image}`}
+            alt=""
+            onError={(e) => (e.target.src = "/img/logo1.png")}
+          />
           <h5 className="products-name">{cur.name}</h5>
           <h6 className="products-price">£{cur.price}</h6>
           <div className="products-btn">
