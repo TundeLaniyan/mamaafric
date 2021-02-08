@@ -4,48 +4,58 @@ const shortid = require("shortid");
 const multer = require("multer");
 const AppError = require("../utils/appError");
 const catchAsync = require("../utils/asyncFunctions");
-const multerStorage = multer.memoryStorage();
+const aws = require("aws-sdk");
+const multerSharp = require("multer-sharp-s3");
+const multerS3 = require("multer-s3-transform");
+const { memoryStorage } = require("multer");
 
-const multerFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith("image")) {
-    cb(null, true);
-  } else {
-    cb(new AppError("Not an image! Please upload only images", 400), false);
-  }
-};
-
-const upload = multer({
-  storage: multerStorage,
-  fileFilter: multerFilter,
+const s3 = new aws.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 });
 
-exports.uploadProducts = upload.single("images");
+const multerFilter = (req, file, cb) => {
+  file.mimetype.startsWith("image")
+    ? cb(null, true)
+    : cb(
+        new AppError(
+          "File uploaded is not an image. Please upload an image.",
+          400
+        )
+      );
+};
 
-exports.resizePhotos = catchAsync(async (req, res, next) => {
-  console.log(5);
-  if (!req.files) return next();
+const multerStorage = multerS3({
+  key: (req, file, cb) => cb(null, `product-${Date.now()}`),
+  bucket: `${process.env.AWS_BUCKET}`,
+  s3,
+  acl: "public-read",
+  transform: function (req, file, cb) {
+    cb(null, sharp().resize(100, 100).toFormat("jpeg").jpg({ quality: 90 }));
+  },
+  // resize: { suffix: "0.jpg", width: 200, height: 200, fit: "cover" },
+  // toFormat: {
+  //   type: "jpg",
+  //   options: { progressive: true, quality: 80 },
+  // },
+});
 
-  req.body.images = [];
-  await Promise.all(
-    req.files.map(async (file, i) => {
-      const filename = `products-${shortid()}-${Date.now()}-${i + 1}.jpeg`;
+const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
 
-      await sharp(file.buffer)
-        .resize(500, 500)
-        .toFormat("jpeg")
-        .jpeg({ quality: 90 });
-      // .toFile(`./public/img/products/${filename}`);
-      // await sharp(req.file.buffer).resize(500, 500).toFormat('jpeg').jpeg({ quality: 90 }).toFile(`./app/public/img/users/${req.file.filename}`)
-      req.body.images.push(filename.toString());
-    })
-  );
+exports.uploadProducts = multer({ storage: multerStorage }).array("image", 1);
+
+exports.renameImage = catchAsync(async (req, res, next) => {
+  req.body.image = `${req.body.name.split(" ").join("-").toLowerCase()}.jpg`;
+  // return next(new AppError(`${JSON.stringify(req.files)}`, 500));
+  // if (!req.files.image) return next();
+  // console.log(req.files.image.map((file) => file.key));
+  // req.body.image = req.files.image.map((file) => file.key);
   next();
 });
 
 exports.updateProduct = catchAsync(async (req, res, next) => {
-  // if (req.file) req.body.images = req.file.filename;
-  if (req.file) req.body.images = req.file.filename;
-  console.log(req.body);
+  // if (req.file) req.body.image = req.file.filename;
+  if (req.file) req.body.image = req.file.filename;
   // if (!req.body) {
   //   return next(new AppError("please put in a vaild input", 404));
   // }
@@ -67,7 +77,7 @@ exports.updateProduct = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteProduct = catchAsync(async (req, res, next) => {
-  const product = await Product.findById(req.params.id);
+  const product = await Product.findById(req.params._id);
 
   if (product) {
     await product.remove();
@@ -78,8 +88,7 @@ exports.deleteProduct = catchAsync(async (req, res, next) => {
 });
 
 exports.createProduct = catchAsync(async (req, res, next) => {
-  if (req.file) req.body.images = req.file.filename;
-  console.log(req.body);
+  if (req.file) req.body.image = req.file.filename;
   const product = await Product.create(req.body);
 
   if (product === undefined || !product) {

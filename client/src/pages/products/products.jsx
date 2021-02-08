@@ -17,7 +17,7 @@ const Products = ({ location, setBasket, basket }) => {
   const [max, setMax] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [sort, setSort] = useState({ direction: "ascending", name: "name" });
-  const { category, type } = queryString.parse(location.search);
+  const { category, type, search } = queryString.parse(location.search);
   const categoryDescription = {
     groceries:
       "Food, Drinks, Spices & Seasoning, Snacks, Meat, Fish & poultry, Rices, Pastra & Flour, Fruit & Veg",
@@ -99,7 +99,9 @@ const Products = ({ location, setBasket, basket }) => {
       <div className={`food food--${category && category.replace(/\s/g, "")}`}>
         <div className="food__container">
           <div className="food__header">
-            {(category && category.split(" ")[0]) || "products"}
+            {(category && category.split(" ")[0]) ||
+              search.slice(0, 10) ||
+              "products"}
           </div>
           <div className="food__header-small">
             {categoryDescription[category] || categoryDescription.offers}

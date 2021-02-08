@@ -15,28 +15,21 @@ const Database = ({ match }) => {
     type: "food",
     description: "This is a test",
     price: 50,
-    images: [],
+    image: {},
   });
 
   useEffect(() => {
     const fetchData = async () => {
-      const {
-        price,
-        name,
-        brand,
-        category,
-        type,
-        description,
-      } = await getProduct(id);
+      const product = await getProduct(id);
 
       setProduct({
-        price,
-        name,
-        brand,
-        category,
-        type,
-        description,
-        images: [],
+        price: product.price,
+        name: product.name,
+        brand: product.brand,
+        category: product.category,
+        type: product.type,
+        description: product.description,
+        image: {},
       });
     };
     id && fetchData();
@@ -47,21 +40,24 @@ const Database = ({ match }) => {
     setStatus("");
     setPending(true);
     const input = new FormData();
+    console.log(product);
     Object.entries(product).forEach((cur) => {
-      if (cur[0] === "images" && !cur[1].length) return;
+      if (cur[0] === "image" && !cur[1]) return;
       input.append(cur[0], cur[1]);
     });
     const status = id ? await updateItem(id, input) : await addItem(input);
     setStatus(status);
     setPending(false);
-    if (status === "success") window.location = "/";
+    if (status === "success") window.location = "/admin-panel/items";
   };
+
   const handleOnChange = ({ target }) => {
-    const { id, value } = target;
+    const { id, value, files } = target;
     const current = { ...product };
-    current[id] = value;
+    current[id] = id === "image" ? files : value;
     setProduct(current);
   };
+
   return (
     <div className="database">
       <form onSubmit={handleOnSubmit}>
@@ -118,11 +114,12 @@ const Database = ({ match }) => {
           />
         </div>
         <div>
-          <label htmlFor="images">Images</label>
+          <label htmlFor="image">Image</label>
           <input
             type="file"
-            id="images"
-            value={product.images}
+            id="image"
+            name="image"
+            accept="image/*"
             onChange={handleOnChange}
           />
         </div>

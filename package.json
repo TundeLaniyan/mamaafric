@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@sendgrid/mail": "^7.4.0",
+    "aws-sdk": "^2.839.0",
     "colors": "^1.4.0",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.4",
@@ -23,6 +24,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.8",
     "multer": "^1.4.2",
+    "multer-s3-transform": "^2.10.3",
+    "multer-sharp-s3": "^0.2.1",
     "nodemailer": "^6.4.17",
     "sharp": "^0.26.3",
     "shortid": "^2.2.16",

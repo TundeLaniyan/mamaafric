@@ -43,11 +43,7 @@ const ShoppingCart = ({ display, setDisplay, basket, setBasket }) => {
             <div className="cart__big-con" key={i}>
               <div className="cart__small-con">
                 <div className="cart__box cart__box-1">
-                  <img
-                    src={`/img/${cur.images}`}
-                    alt=""
-                    className="cart__img"
-                  />
+                  <img src={`/img/${cur.image}`} alt="" className="cart__img" />
                 </div>
                 <div className="cart__box cart__box-2">{cur.name}</div>
                 <div className="cart__box cart__box-3">

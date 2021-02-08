@@ -36,7 +36,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {isLogin && <AdminPanel />}
+        {isLogin == 200 && <AdminPanel />}
         <Header basket={basket} setBasket={setBasket} />
         <Slogan />
         <Nav />

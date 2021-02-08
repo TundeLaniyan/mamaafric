@@ -74,7 +74,6 @@ app.use(xss());
 // Data sanitization against NoSQL query injection
 app.use(mongoSanatize());
 app.use(function (req, res, next) {
-  console.log(1001);
   next();
 });
 app.use("/api/v1/email", emailRouter);

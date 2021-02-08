@@ -25,7 +25,7 @@ const products = [
   {
     name: "Relish Seafood Delight",
     price: 6.99,
-    images: "40421.png",
+    image: "40421.png",
     brand: "Relish",
     category: "groceries",
     type: "Snacks",
@@ -35,7 +35,7 @@ const products = [
   {
     name: "Aboniki Balm",
     price: 16.99,
-    images: "aboniki.png",
+    image: "aboniki.png",
     brand: "Aboniki",
     category: "health and beauty",
     type: "Skin care",
@@ -45,7 +45,7 @@ const products = [
   {
     name: "Amstel Malt",
     price: 1.99,
-    images: "amstel.png",
+    image: "amstel.png",
     brand: "Amstel",
     category: "groceries",
     type: "Drink",
@@ -55,7 +55,7 @@ const products = [
   {
     name: "Ayoola Pounded Yam",
     price: 19.99,
-    images: "Ayoola-poundo-yam-flour450g.png",
+    image: "Ayoola-poundo-yam-flour450g.png",
     brand: "Ayoola",
     category: "groceries",
     type: "Rice pasta flour",
@@ -65,7 +65,7 @@ const products = [
   {
     name: "Black seed",
     price: 3.99,
-    images: "black-seed.png",
+    image: "black-seed.png",
     category: "groceries",
     type: "Food",
     description:
@@ -74,7 +74,7 @@ const products = [
   {
     name: "Tiger Blades",
     price: 12.99,
-    images: "blades.png",
+    image: "blades.png",
     brand: "Tiger",
     category: "groceries",
     type: "Snacks",
@@ -84,7 +84,7 @@ const products = [
   {
     name: "Blue Band Butter",
     price: 36.99,
-    images: "blue-band.png",
+    image: "blue-band.png",
     brand: "Blue Band",
     category: "groceries",
     type: "Food",
@@ -94,7 +94,7 @@ const products = [
   {
     name: "Bonvita",
     price: 1.49,
-    images: "bon-vita.png",
+    image: "bon-vita.png",
     brand: "Bournvita",
     category: "groceries",
     type: "Drink",
@@ -104,7 +104,7 @@ const products = [
   {
     name: "Bournvita",
     price: 1.49,
-    images: "bournvita.png",
+    image: "bournvita.png",
     brand: "Bournvita",
     category: "groceries",
     type: "Drink",
@@ -114,7 +114,7 @@ const products = [
   {
     name: "Playing Cards",
     price: 0.99,
-    images: "cards.png",
+    image: "cards.png",
     category: "home",
     description:
       "Food, Drinks, Spices & Seasoning, Snacks, Meat, Fish & poultry, Rices, Pastra & Flour, Fruit & Veg",
@@ -122,7 +122,7 @@ const products = [
   {
     name: "Checkers Custard",
     price: 4.99,
-    images: "checker-custard.png",
+    image: "checker-custard.png",
     brand: "Checkers",
     category: "groceries",
     type: "Food",
@@ -132,7 +132,7 @@ const products = [
   {
     name: "Flex Peanuts",
     price: 86.99,
-    images: "flex-peanuts.png",
+    image: "flex-peanuts.png",
     brand: "Flex",
     category: "groceries",
     type: "Food",
@@ -142,7 +142,7 @@ const products = [
   {
     name: "Funbact-A Cream",
     price: 1.49,
-    images: "funbact.png",
+    image: "funbact.png",
     brand: "Funbact",
     category: "health and beauty",
     type: "Skin care",
@@ -152,7 +152,7 @@ const products = [
   {
     name: "Gino",
     price: 15.49,
-    images: "gino.png",
+    image: "gino.png",
     brand: "Gino",
     category: "groceries",
     type: "Fruit and veg",
@@ -162,7 +162,7 @@ const products = [
   {
     name: "Golden Basmati",
     price: 16.99,
-    images: "golden-basmati.png",
+    image: "golden-basmati.png",
     brand: "Golden",
     category: "groceries",
     type: "Rice pasta flour",

@@ -42,10 +42,18 @@ export async function addItem(product) {
 }
 
 export async function updateItem(id, product) {
-  console.log(id);
-  console.log(`${url}admin/${id}`);
   try {
     const { data } = await http.patch(`${url}admin/${id}`, product);
+    return data.status;
+  } catch (e) {
+    console.log({ e });
+    return get(e, "response.data.message", "opps something went wrong");
+  }
+}
+
+export async function deleteItem(id) {
+  try {
+    const { data } = await http.delete(`${url}admin/${id}`);
     return data.status;
   } catch (e) {
     console.log({ e });

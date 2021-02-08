@@ -19,7 +19,7 @@ const Product = (props) => {
       style={{ width: "25%", margin: "1rem 4%" }}
     >
       <Link to={`/item/${props._id}`} className="product__container-link">
-        <img className="product__image" src={`/img/${props.images}`} alt="" />
+        <img className="product__image" src={`/img/${props.image}`} alt="" />
         <h5 className="product__name">{props.name}</h5>
         <h6 className="product__price">£{props.price}</h6>
       </Link>

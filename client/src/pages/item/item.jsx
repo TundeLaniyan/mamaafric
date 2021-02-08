@@ -58,7 +58,7 @@ const Item = ({ match, history, setBasket, basket }) => {
                 width={"100%"}
               />
             ) : (
-              <img src={`/img/${item.images}`} alt="" className="item__img" />
+              <img src={`/img/${item.image}`} alt="" className="item__img" />
             )}
 
             <div className="item__box">
@@ -223,7 +223,7 @@ const Item = ({ match, history, setBasket, basket }) => {
                 <Link to={`item/${cur._id}`}>
                   <img
                     className="products-image"
-                    src={`/img/${cur.images}`}
+                    src={`/img/${cur.image}`}
                     alt=""
                   />
                   <h5 className="products-name">{cur.name}</h5>
