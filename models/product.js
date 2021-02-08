@@ -69,10 +69,8 @@ productSchema.index({ price: 1 });
 
 // DOCUMENT MIDDLEWARE: runs before .save() and .create()
 productSchema.pre("save", function (next) {
-  this.name = slugify(this.name || "", { lower: true });
+  this.name = this.name.toLowerCase();
   this.brand = slugify(this.brand || "", { lower: true });
-  this.category = slugify(this.category || "", { lower: true });
-  this.type = slugify(this.type || "", { lower: true });
   next();
 });
 
