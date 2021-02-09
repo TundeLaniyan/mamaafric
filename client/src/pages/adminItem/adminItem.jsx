@@ -41,7 +41,7 @@ const AdminItem = () => {
             className="products-image"
             src={`/img/${cur.image}`}
             alt=""
-            onError={(e) => (e.target.src = "/img/logo1.png")}
+            onError={(e) => (e.target.src = "/img/logo2.png")}
           />
           <h5 className="products-name">{cur.name}</h5>
           <h6 className="products-price">£{cur.price}</h6>
