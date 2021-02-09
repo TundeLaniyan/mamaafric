@@ -62,7 +62,7 @@ const Item = ({ match, history, setBasket, basket }) => {
                 src={`/img/${item.image}`}
                 alt=""
                 className="item__img"
-                onError={(e) => (e.target.src = "/img/logo1.png")}
+                onError={(e) => (e.target.src = "/img/logo2.png")}
               />
             )}
 
@@ -229,7 +229,7 @@ const Item = ({ match, history, setBasket, basket }) => {
                   <img
                     className="products-image"
                     src={`/img/${cur.image}`}
-                    onError={(e) => (e.target.src = "/img/logo1.png")}
+                    onError={(e) => (e.target.src = "/img/logo2.png")}
                     alt=""
                   />
                   <h5 className="products-name">{cur.name}</h5>

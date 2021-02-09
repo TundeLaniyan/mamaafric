@@ -41,7 +41,7 @@ function Home({ setBasket, basket }) {
         className="products-image"
         src={`/img/${props.image}`}
         alt=""
-        onError={(e) => (e.target.src = "/img/logo1.png")}
+        onError={(e) => (e.target.src = "/img/logo2.png")}
       />
       <h5 className="products-name">{props.name}</h5>
       <h6 className="products-price">£{props.price}</h6>
