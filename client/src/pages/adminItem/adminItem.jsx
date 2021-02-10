@@ -30,13 +30,7 @@ const AdminItem = () => {
     <div className="admin-item">
       {products.map((cur, i) => (
         <div className="products-container" key={i}>
-          <Link to={`/item/${cur._id}`} className="hover">
-            <img
-              className="hover__icon"
-              src="/img/icons8-heart-outline.svg"
-              alt=""
-            />
-          </Link>
+          <Link to={`/item/${cur._id}`} className="hover"></Link>
           <img
             className="products-image"
             src={`/img/${cur.image}`}

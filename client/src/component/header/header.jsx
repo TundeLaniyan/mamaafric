@@ -48,7 +48,7 @@ const Header = ({ basket, setBasket }) => {
                 <li>
                   <Link
                     className="navigation__droplinks"
-                    to="/products?category=vegetables & ethnic foods&type=frozen vegetables"
+                    to="/products?category=vegetables and ethnic foods&type=frozen vegetables"
                   >
                     Frozen vegetables
                   </Link>
@@ -56,7 +56,7 @@ const Header = ({ basket, setBasket }) => {
                 <li>
                   <Link
                     className="navigation__droplinks"
-                    to="/products?category=vegetables & ethnic foods&type=vegetables"
+                    to="/products?category=vegetables and ethnic foods&type=vegetables"
                   >
                     Vegetables
                   </Link>
@@ -64,7 +64,7 @@ const Header = ({ basket, setBasket }) => {
                 <li>
                   <Link
                     className="navigation__droplinks"
-                    to="/products?category=vegetables & ethnic foods&type=ethnic foods"
+                    to="/products?category=vegetables and ethnic foods&type=ethnic foods"
                   >
                     Ethnic foods
                   </Link>
@@ -87,7 +87,7 @@ const Header = ({ basket, setBasket }) => {
                 <li>
                   <Link
                     className="navigation__droplinks"
-                    to="/products?category=health & beauty&type=haircare"
+                    to="/products?category=health and beauty&type=haircare"
                   >
                     Haircare
                   </Link>
@@ -95,7 +95,7 @@ const Header = ({ basket, setBasket }) => {
                 <li>
                   <Link
                     className="navigation__droplinks"
-                    to="/products?category=health & beauty&type=oral cale"
+                    to="/products?category=health and beauty&type=oral cale"
                   >
                     Oral care
                   </Link>
@@ -103,7 +103,7 @@ const Header = ({ basket, setBasket }) => {
                 <li>
                   <Link
                     className="navigation__droplinks"
-                    to="/products?category=health & beauty&type=skincare"
+                    to="/products?category=health and beauty&type=skincare"
                   >
                     Skincare
                   </Link>
@@ -111,7 +111,7 @@ const Header = ({ basket, setBasket }) => {
                 <li>
                   <Link
                     className="navigation__droplinks"
-                    to="/products?category=health & beauty&type=wellbeing adults"
+                    to="/products?category=health and beauty&type=wellbeing adults"
                   >
                     Wellbeing adults
                   </Link>
@@ -120,7 +120,7 @@ const Header = ({ basket, setBasket }) => {
             </li>
             <li>
               <Link
-                to="/products?category=drinks & beverages"
+                to="/products?category=drinks and beverages"
                 className="navigation__links navigation__tittle"
               >
                 Drinks & beverages
@@ -128,7 +128,7 @@ const Header = ({ basket, setBasket }) => {
             </li>
             <li>
               <Link
-                to="/products?category=accessories & antiques"
+                to="/products?category=accessories and antiques"
                 className="navigation__links navigation__tittle"
               >
                 Accessories & antiques

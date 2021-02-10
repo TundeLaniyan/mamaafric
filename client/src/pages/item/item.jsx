@@ -11,8 +11,6 @@ const Item = ({ match, history, setBasket, basket }) => {
   const [infoLoading, setInfoLoading] = useState(true);
   const [randomLoading, setRandomLoading] = useState(true);
 
-  // useEffect(() => setRandomProducts(products), []);
-
   useEffect(() => {
     const fetchData = async () => {
       const { _id } = match.params;
@@ -24,7 +22,6 @@ const Item = ({ match, history, setBasket, basket }) => {
     };
     fetchData();
   }, []);
-  useEffect(() => console.log(item, randomProducts), [item, randomProducts]);
 
   const handleAddBasket = (product) => {
     const current = [...basket];

@@ -6,6 +6,7 @@ const api = apiStart + "api/v1/product";
 export async function getProducts(url) {
   try {
     const { data } = await http.get(api + url);
+    console.log(url);
     return data.products;
   } catch (e) {
     console.log({ e });

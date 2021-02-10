@@ -16,6 +16,7 @@
   }
   &__container-link {
     text-decoration: none;
+    color: inherit;
   }
   &__image {
     height: 18rem;
@@ -27,29 +28,24 @@
       transform: scale(1.07);
     }
   }
-
   &__name,
   &__price {
     text-align: center;
     margin: 0.3rem;
   }
-
   &__name {
     font-size: 1.8rem;
     font-weight: 500;
   }
-
   &__price {
     font-size: 1.8rem;
     color: rgb(255, 0, 0);
   }
-
   &__add-basket-btn {
     margin: 0.3rem;
     padding: 1.2rem 0.1rem;
     background-color: #ffe7ba;
   }
-
   &__add-basket-text {
     text-decoration: none;
     color: black;

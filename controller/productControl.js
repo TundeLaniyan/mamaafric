@@ -1,13 +1,18 @@
 const Product = require("../models/product");
-const APIFeatures = require("../utils/apiFeatures");
 const catchAsync = require("../utils/asyncFunctions");
 const AppError = require("../utils/appError");
 const { manualSearch, shuffle } = require("../others/filter");
 const { percentageDiscount } = require("../others/percentage");
 
 const getProducts = catchAsync(async (req, res, next) => {
-  const { search } = req.query;
-  let filter = search ? manualSearch(req.query.search) : req.query;
+  const { search, category, type } = req.query;
+  let filter;
+  if (search) filter = manualSearch(req.query.search);
+  else {
+    if (category) req.query.category = category.split("and").join("&");
+    if (type) req.query.type = req.query.type.split("and").join("&");
+    filter = req.query;
+  }
   const select = "-description -type";
   const products = await Product.find(filter).select(select);
 

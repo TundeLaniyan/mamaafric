@@ -30,7 +30,6 @@ const Products = ({ location, setBasket, basket }) => {
     const fetchData = async () => {
       setIsLoading(true);
       const data = await getProducts(location.search);
-      console.log(data);
       setProducts(data);
       setIsLoading(false);
     };
@@ -100,7 +99,7 @@ const Products = ({ location, setBasket, basket }) => {
         <div className="food__container">
           <div className="food__header">
             {(category && category.split(" ")[0]) ||
-              search.slice(0, 10) ||
+              (search && search.slice(0, 10)) ||
               "products"}
           </div>
           <div className="food__header-small">

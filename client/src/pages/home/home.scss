@@ -206,6 +206,10 @@
     transform: scale(1.05);
     // border: lawngreen solid 0.01rem;
   }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
   @media (max-width: 37.5em) {
     margin: 0 2rem;
   }
