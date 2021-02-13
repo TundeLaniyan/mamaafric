@@ -372,17 +372,17 @@ header {
     }
   }
 }
+#checkbox0:checked + .navigation__droplist-0 {
+  display: block;
+}
 #checkbox1:checked + .navigation__droplist-1 {
   display: block;
 }
 #checkbox2:checked + .navigation__droplist-2 {
   display: block;
 }
-#checkbox3:checked + .navigation__droplist-3 {
-  display: block;
-}
 
-#checkbox4:checked + .navigation__droplist-4 {
+#checkbox3:checked + .navigation__droplist-3 {
   display: block;
 }
 

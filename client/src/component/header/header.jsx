@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ShoppingCart from "../shoppingCart/shoppingCart";
+import NavMobile from "../navMobile/navMobile";
 import { Link } from "react-router-dom";
 import "./header.scss";
 
@@ -28,120 +29,7 @@ const Header = ({ basket, setBasket }) => {
           <div className="navigation__icon">&nbsp;</div>
         </label>
         <div className="navigation__background"></div>
-        <nav className="navigation__nav">
-          <img src="/img/logo1.png" alt="" className="navigation__logo" />
-          <ul className="navigation__list">
-            <li>
-              <label
-                className="navigation__links navigation__tittle"
-                htmlFor="checkbox2"
-              >
-                Vegetables & ethnic foods
-                <span>&#11206;</span>
-              </label>
-              <input
-                type="checkbox"
-                className="navigation__checkbox"
-                id="checkbox2"
-              />
-              <ul className="navigation__droplist navigation__droplist-2">
-                <li>
-                  <Link
-                    className="navigation__droplinks"
-                    to="/products?category=vegetables and ethnic foods&type=frozen vegetables"
-                  >
-                    Frozen vegetables
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="navigation__droplinks"
-                    to="/products?category=vegetables and ethnic foods&type=vegetables"
-                  >
-                    Vegetables
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="navigation__droplinks"
-                    to="/products?category=vegetables and ethnic foods&type=ethnic foods"
-                  >
-                    Ethnic foods
-                  </Link>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <label
-                className="navigation__links navigation__tittle"
-                htmlFor="checkbox3"
-              >
-                Health & beauty<span>&#11206;</span>
-              </label>
-              <input
-                type="checkbox"
-                className="navigation__checkbox"
-                id="checkbox3"
-              />
-              <ul className="navigation__droplist navigation__droplist-3">
-                <li>
-                  <Link
-                    className="navigation__droplinks"
-                    to="/products?category=health and beauty&type=haircare"
-                  >
-                    Haircare
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="navigation__droplinks"
-                    to="/products?category=health and beauty&type=oral cale"
-                  >
-                    Oral care
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="navigation__droplinks"
-                    to="/products?category=health and beauty&type=skincare"
-                  >
-                    Skincare
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="navigation__droplinks"
-                    to="/products?category=health and beauty&type=wellbeing adults"
-                  >
-                    Wellbeing adults
-                  </Link>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <Link
-                to="/products?category=drinks and beverages"
-                className="navigation__links navigation__tittle"
-              >
-                Drinks & beverages
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/products?category=accessories and antiques"
-                className="navigation__links navigation__tittle"
-              >
-                Accessories & antiques
-              </Link>
-            </li>
-          </ul>
-          <div className="navi">
-            <div className="navi__icon navi__icon-1"></div>
-            <div className="navi__icon navi__icon-2"></div>
-            <div className="navi__icon navi__icon-3"></div>
-            <div className="navi__icon navi__icon-4"></div>
-          </div>
-        </nav>
+        <NavMobile />
       </div>
 
       <form className="bar-box" onSubmit={handleSubmit}>

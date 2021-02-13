@@ -32,17 +32,28 @@
   &--home {
     background-image: url(/img/home-products.png);
   }
-  &--healthandbeauty {
-    background-image: url(/img/health-beauty.png);
-    background-size: 70%;
-    background-color: white;
-    background-position-x: 0;
-  }
   &--offers {
     background-image: url(/img/offers.jpg);
     background-size: 50%;
     background-color: gold;
   }
+
+  &--healthandbeauty {
+    background-image: url(/img/health-beauty.jpg);
+    // background-size: 70%;
+    // background-color: white;
+    // background-position-x: 0;
+  }
+  &--vegetablesandethnicfoods {
+    background-image: url(/img/veg.jpg);
+  }
+  &--drinksandbeverages {
+    background-image: url(/img/drinks-beverages.jpg);
+  }
+  &--accessoriesandantiques {
+    background-image: url(/img/accessories-antiques.jpg);
+  }
+
   &__container {
     width: 20%;
     text-align: right;
