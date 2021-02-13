@@ -52,6 +52,7 @@
   }
   &--accessoriesandantiques {
     background-image: url(/img/accessories-antiques.jpg);
+    color: rgb(231, 231, 231);
   }
 
   &__container {
@@ -83,6 +84,7 @@
     font-size: 1.7rem;
     background-color: #ffe7bab3;
     padding: 1.5rem;
+    color: rgba(0, 0, 0, 0.735);
   }
   @media (max-width: 26.75em) {
     font-size: 1.4rem;

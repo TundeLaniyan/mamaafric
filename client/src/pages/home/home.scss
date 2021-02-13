@@ -16,9 +16,11 @@
   }
   @media (max-width: 48em) {
     height: 30vh;
+    min-height: 40vh;
   }
   @media (max-width: 26.7em) {
     height: 20vh;
+    min-height: 30vh;
   }
   &__container {
     width: calc(40% + 16rem);
@@ -42,7 +44,7 @@
       font-size: 3.5rem;
     }
     @media (max-width: 26.7em) {
-      font-size: 2rem;
+      font-size: 2.5rem;
     }
   }
 }
