@@ -8,13 +8,13 @@ const Nav = () => {
     <div className="smallnav">
       <ul className="smallnav__top">
         {Object.entries(nav).map((cur) => (
-          <li className="smallnav__list tittle">
+          <li key={cur[0]} className="smallnav__list tittle">
             {cur[1].length > 1 ? (
               <>
                 {cur[0]}
                 <ul className="smallnav__droplist">
                   {cur[1].map((el) => (
-                    <li className="smallnav__item">
+                    <li key={el} className="smallnav__item">
                       <Link
                         to={`/products?category=${cur[0]}&type=${el}`}
                         className="smallnav__link"

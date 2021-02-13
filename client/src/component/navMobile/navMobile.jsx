@@ -37,7 +37,7 @@ const NavMobile = () => {
               </ul>
             </li>
           ) : (
-            <li>
+            <li key={i}>
               <Link
                 to={`/products?category=${cur[0]}`}
                 className="navigation__links navigation__tittle"
