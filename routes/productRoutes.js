@@ -8,6 +8,6 @@ const {
 const router = express.Router();
 router.route("/").get(getProducts);
 router.route("/random-products").get(randomProducts);
-router.route("/:id").get(getProductById);
+router.route("/:_id").get(getProductById);
 
 module.exports = router;

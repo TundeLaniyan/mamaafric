@@ -18,7 +18,7 @@ const deleteOne = (Model) =>
 
 const updateOne = (Model) =>
   catchAsync(async (req, res, next) => {
-    const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
+    const doc = await Model.findByIdAndUpdate(req.params._id, req.body, {
       new: true,
       runValidators: true,
     });
@@ -45,7 +45,7 @@ const createOne = (Model) =>
 
 const getOne = (Model, popOptions) =>
   catchAsync(async (req, res, next) => {
-    let query = Model.findById(req.params.id);
+    let query = Model.findById(req.params._id);
     if (popOptions) query = query.populate(popOptions);
     const doc = await query;
 

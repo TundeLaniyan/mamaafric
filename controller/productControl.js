@@ -22,7 +22,7 @@ const getProducts = catchAsync(async (req, res, next) => {
 });
 
 const getProductById = catchAsync(async (req, res) => {
-  const product = await Product.findById(req.params.id);
+  const product = await Product.findById(req.params._id);
 
   if (product) {
     res.status(201).json({ status: "success", product });
@@ -51,7 +51,7 @@ const discount = catchAsync(async (req, res, next) => {
   } = req.body;
 
   //  need to sort out dicount on stripe
-  const products = await Product.findById(req.params.id).select("-owner -__v");
+  const products = await Product.findById(req.params._id).select("-owner -__v");
 
   const result = percentageDiscount(
     {

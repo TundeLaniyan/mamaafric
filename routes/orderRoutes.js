@@ -10,7 +10,7 @@ router.use(protect, restrictTo("admin"));
 router.route("/").get(orderControl.getAllOrders).post(orderControl.createOrder);
 
 router
-  .route("/:id")
+  .route("/:_id")
   .get(orderControl.getOrder)
   .patch(orderControl.updateOrder)
   .delete(orderControl.deleteOrder);
