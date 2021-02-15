@@ -66,7 +66,7 @@ exports.updateProduct = catchAsync(async (req, res, next) => {
   //   return next(new AppError("No document found with that ID", 404));
   // }
 
-  const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+  const product = await Product.findByIdAndUpdate(req.params._id, req.body, {
     new: true,
     runValidators: true,
   });
