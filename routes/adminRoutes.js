@@ -11,10 +11,7 @@ const { protect, restrictTo } = require("../controller/authControl");
 const router = express.Router();
 
 router.use(protect, restrictTo("admin"));
-// router.use(function (req, res, next) {
-//   console.log(3003);
-//   next();
-// });
+
 router.route("/").post(uploadProducts, renameImage, createProduct);
 
 router

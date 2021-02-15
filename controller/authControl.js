@@ -6,7 +6,7 @@ const { Email, sendEmail } = require("../utils/email");
 
 const user = {
   _id: 1611766224330,
-  name: "Issac Fayose",
+  name: "Isaac Fayose",
   role: "admin",
   email: "mamaafric2020@gmail.com",
   password: "PleaseCreateANewPassword",

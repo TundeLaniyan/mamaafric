@@ -1,25 +1,18 @@
 const express = require("express");
-const {
-  getCheckoutSession,
-  cart,
-  getOrdersAllAdmin,
-  sessionResponse,
-  getOrder,
-} = require("../controller/orderControl");
-
+const orderControl = require("../controller/orderControl");
 const { protect, restrictTo } = require("../controller/authControl");
 
-// const app = express();
-
 const router = express.Router();
-router.route("/checkout-session/:orderId").get(getCheckoutSession);
+router.post("/checkout-session", orderControl.getCheckoutSession);
 
-router.route("/checkout-session").post(cart);
+router.use(protect, restrictTo("admin"));
 
-router.route("/session/:orderId").get(sessionResponse);
+router.route("/").get(orderControl.getAllOrders).post(orderControl.createOrder);
 
-router.route("/").post(protect, restrictTo("admin"), getOrdersAllAdmin);
-
-router.route("/:id").get(getOrder);
+router
+  .route("/:id")
+  .get(orderControl.getOrder)
+  .patch(orderControl.updateOrder)
+  .delete(orderControl.deleteOrder);
 
 module.exports = router;
