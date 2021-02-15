@@ -8,6 +8,7 @@ const aws = require("aws-sdk");
 const multerSharp = require("multer-sharp-s3");
 const multerS3 = require("multer-s3-transform");
 const { memoryStorage } = require("multer");
+const slugify = require("slugify");
 
 const s3 = new aws.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -88,7 +89,7 @@ exports.deleteProduct = catchAsync(async (req, res, next) => {
 });
 
 exports.createProduct = catchAsync(async (req, res, next) => {
-  if (req.file) req.body.image = req.file.filename;
+  if (req.file) req.body.image = slugify(req.file.filename);
   const product = await Product.create(req.body);
 
   if (product === undefined || !product) {
