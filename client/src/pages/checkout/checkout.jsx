@@ -7,9 +7,7 @@ const Checkout = () => {
     <div>
       <StripeCheckout
         stripeKey="pk_test_51I0nVGEt1pRV29Pwy5IDpy61hUdmCbJOIlB73kRMMVqytTy53lzgYyrMvyFWfTHcPJ9wHlTQfbCiUq1XgyCAye2Q00wiacxdIe"
-        token={(token, address) => {
-          console.log({ token, address });
-        }}
+        token={(token, address) => {}}
         billingAddress
         shippingAddress
         amount={100 * 100}

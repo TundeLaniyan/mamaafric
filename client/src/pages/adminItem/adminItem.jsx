@@ -38,7 +38,7 @@ const AdminItem = () => {
             onError={(e) => (e.target.src = "/img/logo2.png")}
           />
           <h5 className="products-name">{cur.name}</h5>
-          <h6 className="products-price">£{cur.price}</h6>
+          <h6 className="products-price">£{cur.price.toFixed(2)}</h6>
           <div className="products-btn">
             <button className="add-basket-btn">
               <Link

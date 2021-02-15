@@ -26,7 +26,7 @@ const Product = (props) => {
           onError={(e) => (e.target.src = "/img/logo2.png")}
         />
         <h5 className="product__name">{props.name}</h5>
-        <h6 className="product__price">£{props.price}</h6>
+        <h6 className="product__price">£{props.price.toFixed(2)}</h6>
       </Link>
       <button className="product__add-basket-btn" onClick={handleAddBasket}>
         <div className="product__add-basket-text" href="">

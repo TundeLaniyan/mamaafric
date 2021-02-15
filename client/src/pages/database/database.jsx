@@ -40,7 +40,6 @@ const Database = ({ match }) => {
     setStatus("");
     setPending(true);
     const input = new FormData();
-    console.log(product);
     Object.entries(product).forEach((cur) => {
       if (cur[0] === "image" && !cur[1]) return;
       input.append(cur[0], cur[1]);

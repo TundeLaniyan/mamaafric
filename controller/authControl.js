@@ -76,16 +76,15 @@ const protect = catchAsync(async (req, res, next) => {
     return next(
       new AppError("You are not logged in! Please log in to get access.", 401)
     );
-  // console.log(1);
   // 2) Verification token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-  // console.log(2);
+
   // 3) Check if user exists
   if (!decoded || decoded.id !== user._id)
     return next(
       new AppError("The user belonging to this token does not exist.", 401)
     );
-  // console.log(3);
+
   // GRANT ACCESS TO PROTECTED ROUTE
   req.user = user;
   res.locals.user = user;
@@ -105,7 +104,7 @@ const isLoggedIn = async (req, res, next) => {
       return next(
         new AppError("You are not logged in! Please log in to get access.", 401)
       );
-    // console.log("success");
+
     return res.status(200).json({ status: "success" });
   }
 
@@ -115,7 +114,6 @@ const isLoggedIn = async (req, res, next) => {
 };
 
 const restrictTo = (...roles) => {
-  console.log("admin");
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
       return next(

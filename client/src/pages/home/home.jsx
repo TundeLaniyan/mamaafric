@@ -44,7 +44,7 @@ function Home({ setBasket, basket }) {
         onError={(e) => (e.target.src = "/img/logo2.png")}
       />
       <h5 className="products-name">{props.name}</h5>
-      <h6 className="products-price">£{props.price}</h6>
+      <h6 className="products-price">£{props.price.toFixed(2)}</h6>
       <button className="add-basket-btn" onClick={() => handleAddBasket(props)}>
         <div className="add-basket-text">ADD TO BASKET</div>
       </button>
