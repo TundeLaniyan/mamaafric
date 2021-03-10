@@ -14,6 +14,7 @@ const customerSchema = mongoose.Schema({
     city: { type: String, required: true },
     postalCode: { type: String, required: true },
   },
+  phoneNumber: String,
 });
 
 const Customer = mongoose.model("Customer", customerSchema);

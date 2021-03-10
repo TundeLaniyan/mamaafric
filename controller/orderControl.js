@@ -8,13 +8,32 @@ const factory = require("./crudFactory/factory");
 
 const getCheckoutSession = catchAsync(async (req, res, next) => {
   const { email, products, name, shippingAddress } = req.body;
+  if (
+    !email ||
+    typeof products !== "object" ||
+    !products.length ||
+    !name ||
+    !shippingAddress
+  )
+    return next(
+      new AppError(
+        `Please provide ${
+          !products.length ? "product list" : "customer details"
+        }`,
+        400
+      )
+    );
 
-  if (!email || products || name || email || shippingAddress)
-    return next(new AppError("Please provide product list", 400));
-
-  await Customer.create(req.body);
+  let customer = await Customer.findOne({ email, name, shippingAddress });
+  if (!customer) {
+    customer = await Customer.create({ email, name, shippingAddress });
+  }
+  console.log("customer", customer);
+  console.log("products", products);
 
   const items = await Product.find({ _id: { $in: products } });
+  console.log("items", items.length);
+  return next(new AppError());
 
   if (!items.length) return next(new AppError(`Product are not found`, 400));
 

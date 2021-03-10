@@ -1,6 +1,10 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
+import { getStripeSession } from "../../services/orderService";
 import "./shoppingCart.scss";
+const stripe = window.Stripe(
+  "pk_live_51IGl6rJeTyzaaduBarvR1isfMXhszGFNvlljqInfjNW5Lk974JfU5kMk1N34VeuTW9GUJgnnG2hjbsPeNuC2l3D9001oIwPB0i"
+);
 
 const ShoppingCart = ({ display, setDisplay, basket, setBasket }) => {
   const handleQuantityChange = (e, i) => {
@@ -12,6 +16,10 @@ const ShoppingCart = ({ display, setDisplay, basket, setBasket }) => {
     const current = [...basket];
     current.splice(i, 1);
     setBasket(current);
+  };
+  const stripeCheckout = () => {
+    const product = basket.map((el) => el._id);
+    getStripeSession(product);
   };
   const total =
     basket.length &&
@@ -77,7 +85,7 @@ const ShoppingCart = ({ display, setDisplay, basket, setBasket }) => {
           ))}
         </div>
         <div className="cart__bottom">
-          <StripeCheckout
+          {/* <StripeCheckout
             stripeKey="pk_test_51I0nVGEt1pRV29Pwy5IDpy61hUdmCbJOIlB73kRMMVqytTy53lzgYyrMvyFWfTHcPJ9wHlTQfbCiUq1XgyCAye2Q00wiacxdIe"
             token={(token, address) => {
               console.log({ token, address });
@@ -87,13 +95,13 @@ const ShoppingCart = ({ display, setDisplay, basket, setBasket }) => {
             amount={total}
             name="product"
             currency="GBP"
-          >
-            <button className="proceed-btn">
-              <div className="proceed-btn-txt" href="checkout-page.html">
-                PROCEED TO CHECKOUT
-              </div>
-            </button>
-          </StripeCheckout>
+          > */}
+          <button className="proceed-btn" onClick={stripeCheckout}>
+            <div className="proceed-btn-txt" href="checkout-page.html">
+              PROCEED TO CHECKOUT
+            </div>
+          </button>
+          {/* </StripeCheckout> */}
           <div className="cart__total-con">
             <div className="cart__total-text">Total:</div>
             <div className="cart__total-price">£{total / 100}</div>
